@@ -1,0 +1,17 @@
+body{
+	background: rgb(0,212,255);
+	background: radial-gradient(circle, rgba(0,212,255,1) 0%, rgba(100,100,205,1) 100%);
+}
+#content{
+	width: 35%;
+	margin: auto;
+}
+.procent{
+	display: block; margin-bottom: 10px; background-color: orange; height: 20px; border: 1px solid black;
+}
+input{
+	margin-bottom: 5px;
+}
+hr{
+	border: 2px solid black;
+}
