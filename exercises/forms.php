@@ -44,9 +44,9 @@
 
 	<h2> Uppgift 7 </h2>
 	<form action="forms/forms5.php" method="POST">
-		<input type="text" name="firstNum" placeholder="Nummer 1">
-		<input type="text" name="secondNum" placeholder="Nummer 2">
-		<input type="text" name="thirdNum" placeholder="Nummer 3">
+		<input type="number" name="firstNum" placeholder="Nummer 1">
+		<input type="number" name="secondNum" placeholder="Nummer 2">
+		<input type="number" name="thirdNum" placeholder="Nummer 3">
 		<input type="submit" name="Beräkna">
 	</form>
 
