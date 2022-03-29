@@ -24,7 +24,7 @@ include("incl/header.php");
         <ul id="exer">
          <li id="exempel1"><a href="projects/exempel1.php" target="_blank">Exempel1</a></li>
          <li id="exempel2"><a href="projects/exempel2.php" target="_blank">Exempel2</a></li>
-
+         <li id="dice"><a href="exercises/dice_project/visual_dice.php" target="_blank">Tärningar</a></li>
         </ul>
         </nav>
  </aside>

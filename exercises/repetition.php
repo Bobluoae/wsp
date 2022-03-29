@@ -96,46 +96,85 @@ echo "Detta är medelvärdet av random number från 1 - 10 beroende på hur mån
  ?>
 <h1>Uppgift 5</h1>
 
-yttligare en textruta som dyker upp första gången man kommer in på sidan.
-I textrutan ska man skriva sitt namn. Utöka också utskrifterna så att de börjar med “Hej NAMN!”.
-
-Skriv en sida som innehåller ett formulär med 1 textruta och en “testa” knapp.
-Slumpa ut ett tal som sparas i en variabel.
-Du ska nu gissa talet genom att skriva in det i textrutan och klicka på knappen.
-Programmet ska då svara om du gissade rätt och hur många försök det tog.
-Annars skriver den ut “Fel, du har gissat ANTAL gånger”.
-<br><br>
-
-<?php include "repetition/rep2.php" ?>
-<form method="POST">
-	<label>Gissa på ett tal mellan 1 - 10 <br></label>
-	<input type="number" name="n" placeholder="Gissa här" autocomplete="off">
-	<input type="submit" name="Testa">
-</form>
-<?php 
-$ar = [1,2,3,4,5,6,7,8,9,10];
-
-$rn = array_rand($ar, 1);
-
-
-if (!isset($_SESSION["count"])) {
-	$_SESSION["count"] = 0;
+<?php
+if (!isset($_SESSION['name']) && isset($_POST['name'])) {
+    $_SESSION['name'] = $_POST['name'];
+} elseif (!isset($_SESSION['randomNumber'])) {
+    $_SESSION['messages'] = [];
+    $_SESSION['randomNumber'] = rand(1, 10);
+} else {
+    if (isset($_POST['guess'])) {
+        if ($_SESSION['randomNumber'] == $_POST['guess']) {
+            $_SESSION['messages'][] = "du gissade rätt på ".count($_SESSION['messages'])." försök. Svaret var: " . $_SESSION['randomNumber'];
+            session_destroy();
+        } else {
+            $_SESSION['messages'][] = $_POST['guess']." är fel.";
+        }
+    }
 }
-if (!isset($_POST["n"])) {
-	$_POST["n"] = 0;
-}
-if ($rn == $_POST["n"]) {
-	echo "Du har gissat rätt! Svaret var: " . $rn . "! Du har gissat: ". $_SESSION["count"] . "gånger.";
-	$_SESSION["count"] = 0;
 
-} else if ($rn !== $_POST["n"]) {
-	$_SESSION["count"] = $_SESSION["count"] + 1;
-	echo "Försök igen! Du har gissat " . $_SESSION["count"];
+?>
+
+<?php if (!isset($_SESSION['name'])) : ?>
+    <form method="POST">
+        <label>Ange ditt namn<br></label>
+        <input id="name" type="name" name="name" placeholder="Namn" autocomplete="off">
+        <input type="submit">
+    </form>
+<?php else : ?>
+    <form method="POST">
+        <label>Hej <?=$_SESSION['name']?>, Gissa på ett tal mellan 1 - 10 <br></label>
+        <input id="number" type="number" name="guess" placeholder="Gissa här" autocomplete="off">
+        <input type="submit">
+    </form>
+<?php endif ?>
+<script>
+    document.getElementById('number').focus();
+</script>
+<?php
+foreach ($_SESSION['messages'] as $message) {
+    echo $message . "<br>";
 }
 
 
  ?>
 
+<h1>Uppgift 6</h1>
+
+<?php 
+
+class Person {
+
+	public $name = "";
+	private $adress = "";
+	private $email = "";
+
+
+	public function __construct ($namn="namn", $address="address", $epost="epost"){
+		$this->name = $namn;
+		$this->adress = $address;
+		$this->email = $epost;
+	}
+
+	public function getPerson(){
+		return "namn: ".$this->name . "<br> address: ". $this->adress ."<br> epost:  ". $this->email;
+	}
+	public function setPerson($namn, $address, $epost){
+		$this->name = $namn;
+		$this->adress = $address;
+		$this->email = $epost;
+	}
+}
+
+$person = new Person("Erik", "Kungsgatan 35", "kallgrenerik@gmail.com");
+
+echo $person->getPerson();
+
+$person->setPerson("Olle", "Fladdergatan 53", "olleegay@hotmail.com");
+
+echo "<br>===================================<br>" . $person->getPerson();
+
+ ?>
 
 </body>
 </html>
