@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html class="h-100">
 <head>
 	<title>DB - Intro</title>
 	<meta charset="utf-8">
