@@ -10,7 +10,7 @@
 			<th>EDIT</th>
 		</tr>
 		<?php
-		$query = mysqli_query($conn, "SELECT * FROM friends");
+		$query = mysqli_query($conn, "SELECT * FROM friends ORDER BY id DESC");
 		while($row = mysqli_fetch_assoc($query)) {
 			echo "<tr>";
 			echo "<td>" . $row["id"] . "</td>";

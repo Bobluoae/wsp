@@ -37,7 +37,7 @@
 
 body {
   text-shadow: 0 .05rem .1rem rgba(100, 100, 100, .5);
-  background: radial-gradient(circle, rgba(255,0,0,0.5) 0%, rgba(255, 0, 100, 0.4) 100%);
+  background: radial-gradient(circle, rgba(255,0,0,0.5) 0%, rgba(255, 0, 100, 0.4) 100%)!important;
 }
 
 .cover-container {
@@ -75,7 +75,7 @@ body {
   justify-content: center;
 }
 #tablebox{
-  background: darkred;
+  background: darkmagenta;
   margin: auto;
   font-size: 20px;
   color: white;
