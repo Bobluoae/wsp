@@ -32,6 +32,7 @@ include("incl/header.php");
          <li id="cookies"><a href="exercises/cookies.php" target="_blank">Cookies</a></li>
          <li id="classes"><a href="exercises/classes/classes1.php" target="_blank">Klasser</a></li>
          <li id="repetition"><a href="exercises/repetition.php" target="_blank">Repetition</a></li>
+         <li id="array"><a href="exercises/javascript/array/array1.html" target="_blank">JSArray</a></li>
         </ul>
         </nav>
  </aside>

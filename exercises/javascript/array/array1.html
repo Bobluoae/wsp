@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSArray</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<button id="knapp">Hello There</button>
+<div id="a"></div>
+<div id="b"></div>
+<div id="c"></div>
+<div id="d"></div>
+
+<script type="text/javascript">
+const numbers = [5, 6, 1, 3 ,4 ,9];	
+const knapp = document.getElementById("knapp");
+let sum = 0;
+let sumstring = "";
+
+
+const knappE = function(){
+	sum = 0;
+	for (let i = 0; i < numbers.length; i++) {
+    	sum += numbers[i];
+    	sumstring = sumstring + " | " + numbers[i];
+	}
+
+	document.getElementById("a").innerHTML = "Summan: " + sum;
+	document.getElementById("b").innerHTML = "Tal i array: " + sumstring;
+	document.getElementById("c").innerHTML = "Medelvärde: " + sum / numbers.length;
+	document.getElementById("d").innerHTML = "Sort: " + numbers.sort();
+	
+}
+
+
+knapp.addEventListener("click", knappE);
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
