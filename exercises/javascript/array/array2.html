@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSArray</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<button id="knapp">Byt bild</button>
+<button id="start">Start</button>
+<button id="stop">Stopp</button>
+
+<div id="idk"><img id="pic" src=""></div> <!-- variabel -->
+
+<script type="text/javascript">
+
+pics = ["bilder/aaa.jpg", "bilder/boop.jpg", "bilder/fish.jpg", "bilder/shut.jpg", "bilder/sillygoose.jpg"];
+var bild = 0;
+
+
+setBild = b => {
+	pic = document.getElementById("pic");
+	pic.src = pics[b];
+}; setBild(bild);
+
+
+bytbild = () => {
+	bild++
+	if (bild >= pics.length) {
+		bild = 0;
+	}
+	setBild(bild);
+}
+
+
+byt = document.getElementById("knapp");
+start = document.getElementById("start");
+stop = document.getElementById("stop");
+
+
+
+byt.addEventListener("click", bytbild);
+
+
+
+start.addEventListener("click", () => {
+	if (typeof myInterval !== 'undefined') {
+		clearInterval(myInterval);
+	}
+ 	myInterval = setInterval(bytbild, 1000);
+});
+
+
+
+stop.addEventListener("click", () => {
+	if (typeof myInterval !== 'undefined') {
+		clearInterval(myInterval);
+	}
+}); 
+
+
+
+
+
+// "function(){}" är "() =>" + du kan skippa parantes om du har ett argument 
+// du kan skippa måsvingar om du bara har ett uttryck (en kodrad i funktionen ex; a + 10) 
+// Om det enda utrycket ska returneras, kan du också skippa ordet "return"
+// Exempel: a => a + 100;
+// function (a) { return a + 100; }
+
+</script>
+<a href="index.php">Tillbaka till JSArray</a>
+
+</body>
+</html>
