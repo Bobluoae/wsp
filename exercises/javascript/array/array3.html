@@ -6,68 +6,63 @@
 </head>
 <body>
 
-<!-- <button id="knapp">Hello There</button>
-<div id="a"></div>
-<div id="b"></div>
-<div id="c"></div>
-<div id="d"></div> -->
+<h1>Uppgift 3</h1>
+<input id="addfield" type="number" name="tal"><br>
+<button id="addbtn">Add</button><br>
+<button id="showarrbtn">Show Array</button><br>
+<button id="sumbtn">Show Sum of array</button><br>
+<button id="medel">Show Average</button><br>
+<button id="sort">Show Sorted Array</button><br>
 
-<div id="arrayhold"></div>
-<input id="addfield" type="number" name="tal">
-<button id="addbtn">Add</button>
-<button id="showarrbtn">Show Array</button>
-<button id="sumbtn">Show Sum of array</button>
-
-
+<div style="border: 3px solid black; width: 200px; height: 200px;" id="arrayhold"></div><br>
 
 <script type="text/javascript">
 const numbers = [5, 6, 1, 3 ,4 ,9];	
-// const knapp = document.getElementById("knapp");
-// let sum = 0;
-// let sumstring = "";
-
-
-// const knappE = function(){
-// 	sum = 0;
-// 	sumstring = 0;
-// 	const numbers = [5, 6, 1, 3 ,4 ,9];
-// 	for (let i = 0; i < numbers.length; i++) {
-//     	sum += numbers[i];
-//     	sumstring = sumstring + " | " + numbers[i];
-// 	}
-
-// 	document.getElementById("a").innerHTML = "Summan: " + sum;
-// 	document.getElementById("b").innerHTML = "Tal i array: " + sumstring;
-// 	document.getElementById("c").innerHTML = "Medelvärde: " + sum / numbers.length;
-// 	document.getElementById("d").innerHTML = "Sort: " + numbers.sort();
-	
-	
-// }
-
-// knapp.addEventListener("click", knappE);
-
 
 addbtn = document.getElementById("addbtn");
 showarrbtn = document.getElementById("showarrbtn");
 sumbtn = document.getElementById("sumbtn");
+medel = document.getElementById("medel");
+sorter = document.getElementById("sort");
 
+//ADD TO ARRAY
 addbtn.addEventListener("click", () => {
 	fieldval = document.getElementById("addfield").value;
-	numbers.push(fieldval);
+	if (fieldval !== "") {
+		numbers.push(fieldval);
+	}
 });
-
+//SHOW
 showarrbtn.addEventListener("click", () => {
-	arrayhold = document.getElementById("arrayhold").innerHTML = numbers;
-
+	document.getElementById("arrayhold").innerHTML = format(numbers);
 });
-
+//SUM
 sumbtn.addEventListener("click", () => {
-	arrayhold = document.getElementById("arrayhold").innerHTML = numbers.reduce(getSum, 0);
-
+	document.getElementById("arrayhold").innerHTML = "Summan: " + numbers.reduce(getSum, 0);
 });
+//MEDEL
+medel.addEventListener("click", () => {
+	document.getElementById("arrayhold").innerHTML = "Medelvärde: " + numbers.reduce(getSum, 0) / numbers.length;
+});
+//SORT AND SHOW
+sorter.addEventListener("click", () => {
+	const output = [...numbers];
+	output.sort((a, b) => a - b);
+	document.getElementById("arrayhold").innerHTML = "Sort: " + format(output); 
+});
+
 
 function getSum(total, num) {
   return total + Math.round(num);
+}
+
+function format(arr){
+	txt = "";
+	arr.forEach((value, index, array) => {
+	  txt += value + ", ";
+	});
+	txt = txt.substring(0, txt.length - 2);
+	return txt;
 }
 
 

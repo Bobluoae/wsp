@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSArray</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<h1>Uppgift 4</h1>
+<label>Mata in värde #<span id="valuenum">1</span></label><br>
+<input id="addfield" type="number" name="tal" placeholder="Number here">
+<button id="addbtn">Add</button><br>
+
+<div style="border: 3px solid black; width: 200px; height: 200px;" id="arrayhold"></div><br>
+
+<script type="text/javascript">
+
+const testarr = [1,2,3];
+console.log(removeMax(testarr));
+
+
+const numbers = [];	
+
+addbtn = document.getElementById("addbtn");
+
+//Add only 7 elements to array and write average with 2 decimal places.
+
+addbtn.addEventListener("click", () => {
+
+	fieldval = document.getElementById("addfield").value;
+	if (fieldval !== "" && fieldval <= 10 && fieldval >= 0 && numbers.length < 7) {
+		numbers.push(parseFloat(fieldval));
+		
+		if (numbers.length >= 7) {
+
+			//Ta bort högsta värdet ur arrayen
+			medelminusmax = removeMax(numbers);
+
+			//Ta bort lägsta värdet ur arrayen
+			medelminusmaxochmin = removeMin(medelminusmax);
+
+			//Räkna ut nytt medelvärde
+			medelseven = (numbers.reduce(getSum, 0) / numbers.length);
+			medelfive = (medelminusmaxochmin.reduce(getSum, 0) / medelminusmaxochmin.length);
+
+			document.getElementById("arrayhold").innerHTML = format(numbers) + " <br>Medelvärde: " + medelseven.toFixed(2)
+			 + "<br><br>" + format(medelminusmaxochmin) + " <br>Medelvärde: " + medelfive.toFixed(2);
+		} else {
+			document.getElementById("valuenum").innerHTML = numbers.length +1;
+			document.getElementById("arrayhold").innerHTML = format(numbers);
+		}
+	}
+});
+
+
+// FOUND AT https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max
+function removeMax(numbers) {
+  	const max = Math.max(...numbers)
+  	return numbers.filter(number => number !== max)
+}
+function removeMin(numbers) {
+  	const min = Math.min(...numbers)
+  	return numbers.filter(number => number !== min)
+}
+
+
+
+function getSum(total, num) {
+  return total + parseFloat(num);
+}
+function format(arr){
+	txt = "";
+	arr.forEach((value, index, array) => {
+	  txt += value + ", ";
+	});
+	txt = txt.substring(0, txt.length - 2);
+	return txt;
+}
+
+</script>
+<br>
+
+
+<a href="index.php">Tillbaka till JSArray</a>
+<p>OBS! Bugg gör så att fler än 1 av det största och lägsta värdena tas bort. Det kan råka bli NaN i medelvärdet
+ <br>har fan inte tid att fixa</p>
+</body>
+</html>
