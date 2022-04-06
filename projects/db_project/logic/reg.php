@@ -38,6 +38,8 @@ if(isset($_POST["reg_skickat"])){
 			 "', usertype = '". "user" . "'";
 
 		$query = $conn->query($sql);
+
+
 		if ($query) {
 			$_GET["page"] = "welcome";
 
@@ -50,9 +52,11 @@ if(isset($_POST["reg_skickat"])){
 				// output data of each row
 		  		while($results = $query->fetch_assoc()) {
 		    		$_SESSION["username"] = $results["username"];
+		    		$_SESSION["usertype"] = $results["username"];
 		    	} 
 
 				$_SESSION["isLoggedIn"] = true;
+				$_SESSION["usertype"] = "user";
 			} else {
 				$error = true;
 				$message = "wtf";

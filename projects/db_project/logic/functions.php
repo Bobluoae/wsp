@@ -6,8 +6,8 @@ if (!isset($_GET["page"])) {
 //Delete id of row from DB when clicked
 if (isset($_GET["delete"])) {
 	$sql = "DELETE FROM friends WHERE id = " . intval($_GET["delete"]);
-
 	$query = mysqli_query($conn, $sql);
+	$_GET["page"] = "tableadmin";
 }
 //Read clicked id and insert into form via post
 if (isset($_GET["update"])) {
@@ -24,4 +24,5 @@ if (isset($_POST["update_skickat"])) {
 			phone = '".$_POST['phone']."',
 			email = '".$_POST['email']."' WHERE id = ". $_POST['id'];
 	$query = mysqli_query($conn, $sql);
+	$_GET["page"] = "tableadmin";
 }

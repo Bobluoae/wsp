@@ -19,6 +19,7 @@
 						<input type="password" name="confirm_password"><br>
 						<input type="submit" name="register" value="Registrera"><br>
 					</form>
+					<br><a href="index.php">Go to Sign in</a>
 				<?php } else { ?>
 					<h2>Hello, <?=$_SESSION["username"]?>! You should not be here...</h2>
 					<br>

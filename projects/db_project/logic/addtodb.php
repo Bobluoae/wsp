@@ -10,6 +10,6 @@ if (isset($_POST["addform_skickat"])) {
 		 email = '". $_POST["email"] ."'";
 
 	$query = $conn->query($sql);
-
+	$_GET["page"] = "tableadmin";
 
 }
