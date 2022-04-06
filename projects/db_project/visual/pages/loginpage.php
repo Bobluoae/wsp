@@ -8,7 +8,7 @@
 				Sign in
 			</h1>
 			<form method="POST">
-				<input type="hidden" name="inlogg_skickat">
+				<input type="hidden" name="inlogg_skickat" value="1">
 					<label>Username</label><br>
 				<input type="text" name="username"><br>
 					<label>Password</label><br>

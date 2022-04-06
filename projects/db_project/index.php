@@ -7,8 +7,9 @@ session_start();
 
 include "logic/functions.php";
 $error = false;
-include "logic/login.php";
 include "logic/reg.php";
+include "logic/login.php";
+
 
 //logic
 include "logic/addtodb.php";

@@ -8,8 +8,10 @@
 			<th>EMAIL</th>
 		</tr>
 		<?php
-		$query = mysqli_query($conn, "SELECT * FROM friends ORDER BY id DESC");
-		while($row = mysqli_fetch_assoc($query)) {
+		$query = $conn->prepare("SELECT * FROM friends ORDER BY id DESC");
+		$query->execute();
+
+		while($row = $query->fetch(PDO::FETCH_ASSOC)) {
 			echo "<tr>";
 			echo "<td>" . $row["id"] . "</td>";
 			echo "<td>" . $row["name"] . "</td>";
