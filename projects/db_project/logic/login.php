@@ -6,17 +6,15 @@ if(isset($_POST["inlogg_skickat"])){
 
 	// $query = $conn->query($sql);
 
-
+	$name = $_POST["username"];
+	$pass = sha1($_POST['password']);
 	
-	$query = $conn->prepare("SELECT * FROM users WHERE password AND username IN (?, ?)");
+	$query = $conn->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
 	$query->bind_param('ss', $name, $pass);
 
-		$name = $_POST["username"];
-	$pass = sha1($_POST['password']);
 	
 	$query->execute();
 	$result = $query->get_result();
-
 
 	if ($result->num_rows == 1) {
 		// output data of each row
