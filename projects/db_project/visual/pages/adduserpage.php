@@ -1,4 +1,4 @@
 <div>
-	<h2>Friends</h2>
+	<h2>Users</h2>
 	<p>Table displayed from database</p>
 </div>

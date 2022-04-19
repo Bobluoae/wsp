@@ -43,6 +43,16 @@ if ($_SESSION["usertype"] == "admin") {
 	if ($_GET["page"] == "update") {
 		include "visual/pages/update.php";
 	}
+	if ($_GET["page"] == "updateu") {
+		include "visual/pages/updateu.php";
+	}
+	if ($_GET["page"] == "adminusertable") {
+		include "visual/pages/adduserpage.php";
+		include "logic/adminusertable.php";
+	}
+	if ($_GET["page"] == "adduserform") {
+		include "visual/pages/adduserform.php";
+	}
 }
 if ($_SESSION["usertype"] == "user") {
 

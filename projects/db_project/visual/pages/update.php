@@ -1,5 +1,5 @@
 <div>
-	<h1>UPDATE</h1>
+	<h1>UPDATE FRIENDS</h1>
 	<form method="POST" action="?page=table">
 		<input type="hidden" name="update_skickat">
 		<input type="hidden" name="id" value="<?=$_POST['id']?>">
