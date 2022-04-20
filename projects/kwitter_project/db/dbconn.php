@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "HemData531";
-$database = "dbintro";
+$database = "kwitter";
 
 try {
     $conn = new PDO("mysql:host={$servername};dbname={$database}", $username, $password);

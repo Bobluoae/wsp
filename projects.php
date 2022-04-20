@@ -26,6 +26,7 @@ include("incl/header.php");
          <li id="exempel2"><a href="projects/exempel2.php" target="_blank">Exempel2</a></li>
          <li id="dice"><a href="projects/dice_project/visual_dice.php" target="_blank">Tärningar</a></li>
          <li id="dbintro"><a href="projects/db_project/index.php" target="_blank">DBintro</a></li>
+         <li id="kwitter"><a href="projects/kwitter_project/index.php" target="_blank">Kwitter</a></li>
         </ul>
         </nav>
  </aside>
