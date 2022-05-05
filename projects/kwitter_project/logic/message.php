@@ -3,12 +3,27 @@
 		Username | Usertype
 	</div>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<?php 
+	
+	$id = $_SESSION["user_id"];
+
+	$query = $conn->prepare("SELECT * FROM chat_log WHERE user_id = ?");
+	$query->bindParam('1', $id, PDO::PARAM_INT);
+	$query->execute();
+
+	if ($query) {
+		// output data of each row
+  		$results = $query->fetch(PDO::FETCH_ASSOC);
+  		$a = $results["message"];
+  		foreach ($results as $key => $value) {
+  			echo " | " . $value;
+  		}
+  	}
+
+ ?>
+
+
+
 
 	<div class="border m-1">
 		<?php

@@ -13,6 +13,7 @@ if(isset($_POST["inlogg_skickat"])){
 	if ($query->rowCount() == 1) {
 		// output data of each row
   		$results = $query->fetch(PDO::FETCH_ASSOC);
+  		$_SESSION["user_id"] = $results["user_id"];
 		$_SESSION["username"] = $results["username"];
 		$_SESSION["usertype"] = $results["usertype"];
 
