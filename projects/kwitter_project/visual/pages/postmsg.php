@@ -1,4 +1,4 @@
-<div class="container bg">
+<div class="container bg h-100">
   <div class="row align-items-start border">
     <div class="col-2 border col-md-2">
     	<div class="m-1">

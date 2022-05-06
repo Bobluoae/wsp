@@ -1,28 +1,34 @@
-<div class="border m-1 p-2">
-	<div class="border m-1 p-1">
-		Username | Usertype
-	</div>
-
 <?php 
 	
 	$id = $_SESSION["user_id"];
 
-	$query = $conn->prepare("SELECT * FROM chat_log WHERE user_id = ?");
-	$query->bindParam('1', $id, PDO::PARAM_INT);
+	$query = $conn->prepare("SELECT * FROM chat_log, users/*WHERE user_id = ?*/");
+	// $query->bindParam('1', $id, PDO::PARAM_INT);
 	$query->execute();
+	$results = $query->fetch(PDO::FETCH_ASSOC);
 
-	if ($query) {
-		// output data of each row
-  		$results = $query->fetch(PDO::FETCH_ASSOC);
-  		$a = $results["message"];
-  		foreach ($results as $key => $value) {
-  			echo " | " . $value;
-  		}
-  	}
+	$q = $conn->prepare("SELECT COUNT(*) FROM chat_log"); 
+	$q->execute();
+
+
+
+	$num = $q->fetchColumn();
+	for ($i=0; $i < $num; $i++) { 
+
+?>
+<div class="border m-1 p-2">
+	<div class="border m-1 p-1">
+		<?=$results["username"]?> | <?=$results["usertype"]?>
+	</div>
+
+
+<?php
+
+	if ($num){
+		echo $results["message"]/*[$i]*/;
+	}
 
  ?>
-
-
 
 
 	<div class="border m-1">
@@ -39,6 +45,9 @@
 			<?php echo '<span style="font-size: 15px">'. $result .'%</span>';?>
 		</div>
 	<button>Like</button>   
-	<button>Dislike</button>			
+	<button>Dislike</button>
+	<button>Reply</button>	
 	</div>
 </div>
+
+<?php } ?>

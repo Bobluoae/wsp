@@ -11,10 +11,8 @@
     <div class="col-8 border col-md-8">
    		<div class="m-1 p-4">
 
-   			<?php 
-   				for ($i=0; $i < 10; $i++) { 
-   					include "logic/message.php";
-   				}
+   			<?php
+   				include "logic/message.php";
    			 ?>
 
    		</div>
