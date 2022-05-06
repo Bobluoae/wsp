@@ -29,3 +29,12 @@ function getUserInfo (){
 		return false;
 	}
 }
+function getReplies($m_id) {
+	global $conn;
+	//Hämta alla replies, alla nyaste replies blir först på listan
+	$query = $conn->prepare("SELECT * FROM replies, users WHERE m_id = ? AND replies.user_id = users.user_id ORDER BY r_id DESC");
+	$query->bindParam('1', $m_id, PDO::PARAM_INT);
+	$query->execute();
+
+	return $query->fetchAll(PDO::FETCH_ASSOC);
+}

@@ -1,13 +1,13 @@
 <!-- Rutan på ett inlägg -->
-<div class="border m-1 p-2 mb-5">
+<div class="border m-1 p-2">
 
 	<!-- Rutan på namn och användartyp -->
 	<div class="border m-1 p-1">
-		<?=$message["username"]?> | <?=$message["usertype"]?>
+		<?=$reply["username"]?> | <?=$reply["usertype"]?>
 	</div>
 
 	<!-- Utskrift av meddelande -->
-	<?=$message["message"];?>
+	<?=$reply["reply"];?>
 
 	<!-- Ruta för like, dislike och like-dislike ratio och replies -->
 	<div class="border m-1">
@@ -28,8 +28,5 @@
 		</div>
 		<button>Like</button>   
 		<button>Dislike</button>
-		<?php if ($_GET["page"] !== "reply"): ?>
-			<a href="?page=reply&reply=<?= $message["m_id"]?>"><button>Reply</button></a>
-		<?php endif ?>
 	</div>
 </div>

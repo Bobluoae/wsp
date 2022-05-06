@@ -12,17 +12,25 @@
    			 <!-- Rutan på ett inlägg -->
 			<div class="border m-1 p-2">
 
-			<!-- formulär för inlägg -->
+			<!-- formulär för reply -->
 			<form method="post" action="" class="">
-				<input type="hidden" name="upload_skickat"> <!-- Skickar en parameter till php -->
+				<input type="hidden" name="reply_skickat"> <!-- Skickar en parameter till php -->
 				<textarea class="form-control" rows="5" name="textarea"></textarea>
 
 				<!-- Submit knapp separat från textboxen -->
 				<div class="border m-1">
-					<input type="submit" name="submit" value="Post Your Kwitt!">
+					<input type="submit" name="submit" value="Reply to this Kwitt!">
 				</div>
 			</form>	
 			</div>
+
+			<?php 
+				foreach ($replies as $reply) {
+					include "visual/partials/replies.php";
+				}
+				 
+			?>
+
 		</div>
 	</div>
 
