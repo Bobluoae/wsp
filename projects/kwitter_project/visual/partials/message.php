@@ -1,25 +1,13 @@
-<?php
-//Kolla om användare är inloggad
-if (isset($_SESSION["user_id"])) {
-	
-	//Hämta alla meddelanden
-	$query = $conn->prepare("SELECT * FROM chat_log, users WHERE chat_log.user_id = users.user_id");
-	$query->execute();
-
-	//Loopa igenom alla meddelanden i DB och skriv ut html
-	while ($results = $query->fetch(PDO::FETCH_ASSOC)) {
-?>
-
 <!-- Rutan på ett inlägg -->
 <div class="border m-1 p-2">
 
 	<!-- Rutan på namn och användartyp -->
 	<div class="border m-1 p-1">
-		<?=$results["username"]?> | <?=$results["usertype"]?>
+		<?=$message["username"]?> | <?=$message["usertype"]?>
 	</div>
 
 	<!-- Utskrift av meddelande -->
-	<?=$results["message"];?>
+	<?=$message["message"];?>
 
 	<!-- Ruta för like, dislike och like-dislike ratio och replies -->
 	<div class="border m-1">
@@ -38,9 +26,8 @@ if (isset($_SESSION["user_id"])) {
 		<div class="pie animate no-round" style="--p:<?php echo $result; ?>;--c:green;">
 			<?php echo '<span style="font-size: 15px">'. $result .'%</span>';?>
 		</div>
-		<button>Like</button>   
-		<button>Dislike</button>
-		<button>Reply</button>	
+			<button>Like</button>   
+			<button>Dislike</button>
+			<a href="?page=reply&reply=<?= $message["m_id"]?>"><button>Reply</button></a>
 	</div>
 </div>
-<?php }}

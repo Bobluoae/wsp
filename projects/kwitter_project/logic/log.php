@@ -18,7 +18,7 @@ if(isset($_POST["inlogg_skickat"])){
 		$_SESSION["usertype"] = $results["usertype"];
 
 		$_SESSION["isLoggedIn"] = true;
-		$_GET["page"] = "flow";
+		header("location: ?page=flow");
 	} else {
 		$error = true;
 	}

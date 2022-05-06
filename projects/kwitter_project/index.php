@@ -4,18 +4,13 @@ session_start();
 
 //Login
 
-// include "logic/functions.php";
+
 $error = false;
 include "logic/reg.php";
 include "logic/log.php";
 
-if (!isset($_GET["page"])) {
-	$_GET["page"] = "";
-}
-
-if (!isset($_SESSION["usertype"])) {
-	$_SESSION["usertype"] = "";
-}
+include "logic/functions.php";
+include "logic/logic.php";
 
 
 include "visual/header.php";
@@ -31,11 +26,14 @@ if ($_GET["page"] == "register") {
 if ($_GET["page"] == "flow") {
 	include "visual/pages/flow.php";
 }
-if ($_GET["page"] == "myflow") {
-	include "visual/pages/myflow.php";
-}
+// if ($_GET["page"] == "myflow") {
+// 	include "visual/pages/myflow.php";
+// }
 if ($_GET["page"] == "postmsg") {
 	include "visual/pages/postmsg.php";
+}
+if ($_GET["page"] == "reply") {
+	include "visual/pages/reply.php";
 }
 
 include "visual/footer.php";
