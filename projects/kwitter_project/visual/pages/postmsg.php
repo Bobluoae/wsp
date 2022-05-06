@@ -12,9 +12,7 @@
    		<div class="m-1 p-4">
 
    			<?php 
-   				for ($i=0; $i < 10; $i++) { 
-   					include "logic/message.php";
-   				}
+   					include "logic/upload_post.php";
    			 ?>
 
    		</div>
