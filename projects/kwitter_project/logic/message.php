@@ -1,37 +1,30 @@
-<?php 
+<?php
+//Kolla om användare är inloggad
+if (isset($_SESSION["user_id"])) {
 	
-	$id = $_SESSION["user_id"];
-
-	$query = $conn->prepare("SELECT * FROM chat_log, users/*WHERE user_id = ?*/");
-	// $query->bindParam('1', $id, PDO::PARAM_INT);
+	//Hämta alla meddelanden
+	$query = $conn->prepare("SELECT * FROM chat_log, users WHERE chat_log.user_id = users.user_id");
 	$query->execute();
-	$results = $query->fetch(PDO::FETCH_ASSOC);
 
-	$q = $conn->prepare("SELECT COUNT(*) FROM chat_log"); 
-	$q->execute();
-
-
-
-	$num = $q->fetchColumn();
-	for ($i=0; $i < $num; $i++) { 
-
+	//Loopa igenom alla meddelanden i DB och skriv ut html
+	while ($results = $query->fetch(PDO::FETCH_ASSOC)) {
 ?>
+
+<!-- Rutan på ett inlägg -->
 <div class="border m-1 p-2">
+
+	<!-- Rutan på namn och användartyp -->
 	<div class="border m-1 p-1">
 		<?=$results["username"]?> | <?=$results["usertype"]?>
 	</div>
 
+	<!-- Utskrift av meddelande -->
+	<?=$results["message"];?>
 
-<?php
-
-	if ($num){
-		echo $results["message"]/*[$i]*/;
-	}
-
- ?>
-
-
+	<!-- Ruta för like, dislike och like-dislike ratio och replies -->
 	<div class="border m-1">
+
+		<!-- Kalkylerar Like-Dislike Ratio -->
 		<?php
 			$dislikes = 5;
 			$likes = 10;
@@ -40,14 +33,14 @@
 			$ratio = $likes / $sum;
 			$result = round($ratio, 2) * 100;
 		 ?>
+		<!-- Utskrift av ratio pie-chart samt knappar för like, dislike och reply -->
 		Ratio: 
 		<div class="pie animate no-round" style="--p:<?php echo $result; ?>;--c:green;">
 			<?php echo '<span style="font-size: 15px">'. $result .'%</span>';?>
 		</div>
-	<button>Like</button>   
-	<button>Dislike</button>
-	<button>Reply</button>	
+		<button>Like</button>   
+		<button>Dislike</button>
+		<button>Reply</button>	
 	</div>
 </div>
-
-<?php } ?>
+<?php }}
