@@ -26,7 +26,7 @@
 		<div class="pie animate no-round" style="--p:<?php echo $result; ?>;--c:green;">
 			<?php echo '<span style="font-size: 15px">'. $result .'%</span>';?>
 		</div>
-		<button>Like</button>   
-		<button>Dislike</button>
+		<button id="like">Like</button>   
+		<button id="dislike">Dislike</button>
 	</div>
 </div>

@@ -26,8 +26,8 @@
 		<div class="pie animate no-round" style="--p:<?php echo $result; ?>;--c:green;">
 			<?php echo '<span style="font-size: 15px">'. $result .'%</span>';?>
 		</div>
-		<button>Like</button>   
-		<button>Dislike</button>
+		<button class="like" value="<?=$message["m_id"]?>">Like</button>   
+		<button class="dislike" value="<?=$message["m_id"]?>">Dislike</button>
 		<?php if ($_GET["page"] !== "reply"): ?>
 			<a href="?page=reply&reply=<?= $message["m_id"]?>"><button>Reply</button></a>
 		<?php endif ?>

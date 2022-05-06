@@ -11,6 +11,10 @@ include "logic/log.php";
 include "logic/functions.php";
 include "logic/logic.php";
 
+if (isset($_GET["ajax"])){
+	include "logic/ajax.php";
+}
+
 //Alltid synliga html filer
 include "visual/header.php";
 include "visual/navbar.php";
