@@ -24,7 +24,7 @@
 			</form>	
 			</div>
 
-			<?php 
+			<?php //Loopa igenom alla svar på ett specifikt inlägg
 				foreach ($replies as $reply) {
 					include "visual/partials/replies.php";
 				}

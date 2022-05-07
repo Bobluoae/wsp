@@ -14,10 +14,14 @@
 
 		<!-- Kalkylerar Like-Dislike Ratio -->
 		<?php
-			$dislikes = 5;
-			$likes = 10;
+			$dislikes = $reply["dislikes"];
+			$likes = $reply["likes"];
+
 			$sum = 0;
 			$sum = $dislikes + $likes;
+
+			if (!$sum == 0) {
+				
 			$ratio = $likes / $sum;
 			$result = round($ratio, 2) * 100;
 		 ?>
@@ -26,6 +30,9 @@
 		<div class="pie animate no-round" style="--p:<?php echo $result; ?>;--c:green;">
 			<?php echo '<span style="font-size: 15px">'. $result .'%</span>';?>
 		</div>
+		<?php }
+		echo "Likes: " . $likes . " | Dislikes: " . $dislikes . " ";
+		 ?>
 		<button id="like">Like</button>   
 		<button id="dislike">Dislike</button>
 	</div>

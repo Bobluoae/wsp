@@ -7,6 +7,7 @@
     <div class="col-8 border col-md-8">
    		<div class="m-1 p-4">
    			<?php
+        //Loopa genom alla meddelanden i DB
    				foreach ($messages as $message) {
             include "visual/partials/message.php";
           }
@@ -20,6 +21,7 @@
 </div>
 <script type="text/javascript">
 
+// Loopa igenom alla knappar från htmlen som skrivs ut med loopen åvan och få deras värde
   const likebuttons = document.querySelectorAll(".like");
   likebuttons.forEach((b)=>{
     b.addEventListener("click", (e)=>{
@@ -34,6 +36,7 @@
     })
   });
 
+//Skicka AJAX request med den tryckta knappens värde till PHP, se Index $_GET["Ajax"]
 function postLike(m_id, isDislike = false){
 
     const payload = {

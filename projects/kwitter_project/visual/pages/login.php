@@ -1,12 +1,14 @@
  <section>
 	<div id="center">
 		<?php if (!isset($_SESSION["isLoggedIn"])) {  
+			//Error hanterare
 			if ($error == true) {
 				echo '<strong style = "color: red">This account does not exist! Try again...</strong>';
 			} ?>
 			<h1>
 				Sign in
 			</h1>
+			<!-- Inloggningsformulär -->
 			<form method="POST">
 				<input type="hidden" name="inlogg_skickat" value="1">
 					<label>Username</label><br>

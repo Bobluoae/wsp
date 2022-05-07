@@ -1,3 +1,4 @@
+  <!-- Navbar -->
   <header class="mb-auto">
     <div>
       <h3 class="mb-0">Kwitter</h3>

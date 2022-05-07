@@ -2,20 +2,20 @@
 
 $user = getUserInfo();
 
+//Definera variabler
 if (!isset($_GET["reply"])) {
 	$_GET["reply"] = false;
 }
-
 if (!isset($_GET["page"])) {
 	$_GET["page"] = "";
 }
-
 if (!isset($_SESSION["usertype"])) {
 	$_SESSION["usertype"] = "";
 }
-
+//Kan bara ske om man är inloggad
 if (isset($_SESSION["user_id"])) {
 
+	//Lägg upp ett inlägg på Kwitter
 	if (isset($_POST["upload_skickat"])) {
 		
 		$text = $_POST["textarea"];
@@ -26,9 +26,11 @@ if (isset($_SESSION["user_id"])) {
 		$query->bindParam('2', $id, PDO::PARAM_INT);
 		$query->execute();
 
+		//Skickar webbläsaren till flow sidan utan återbekräftelse av formuläret.
 		header("Location: ?page=flow");
 	}
 
+	//Svara på en annan användares inlägg
 	if (isset($_POST["reply_skickat"])) {
 
 		$rep = $_POST["textarea"];
@@ -41,15 +43,17 @@ if (isset($_SESSION["user_id"])) {
 		$query->bindParam('3', $user_id, PDO::PARAM_INT);
 		$query->execute();
 
+		//Gå till det specifika inlägget du befinner dig på för att inte få återbekräftelse av formuläret.
 		header("Location: ?page=reply&reply={$_GET["reply"]}");
 	}
 
-
+	//Hämta data från ett specifikt inlägg och alla svar på det inlägget
 	if($_GET["page"] == "reply"){
 		$message = getOneMessage($_GET["reply"]);
 		$replies = getReplies($_GET["reply"]);
 	}
 
+	//Hämta data för alla inlägg
 	if($_GET["page"] == "flow"){
 		$messages = getMessages();
 	}
@@ -57,7 +61,4 @@ if (isset($_SESSION["user_id"])) {
 	// if () {
 	// 	# code...
 	// }
-
-
-
 }
