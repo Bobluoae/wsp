@@ -1,3 +1,8 @@
+<?php 
+// Användaren kan bara se Flow om dom är inloggad
+if (isset($_SESSION["user_id"])) { 
+?>
+
 <div class="container bg">
   <div class="row align-items-start border">
     <!-- inkludera sidopanel -->
@@ -19,6 +24,7 @@
     <?php include "visual/partials/rightpanel.php"; ?>
   </div>
 </div>
+<?php } ?>
 <script type="text/javascript">
 
 // Loopa igenom alla knappar från htmlen som skrivs ut med loopen åvan och få deras värde

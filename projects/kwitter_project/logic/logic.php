@@ -58,7 +58,45 @@ if (isset($_SESSION["user_id"])) {
 		$messages = getMessages();
 	}
 
-	// if () {
-	// 	# code...
-	// }
+	//Delete funktionalitet bara för användaren som postade meddelandet
+	if (isset($_GET["delete"])) {
+		$messages = getMessages();
+		foreach ($messages as $message) {
+			if ($_SESSION["user_id"] == $message["user_id"] && $_GET["delete"] == $message["m_id"]) {
+
+				$del = intval($_GET["delete"]);
+
+				$query = $conn->prepare("DELETE FROM chat_log WHERE m_id = ?");
+				$query->bindParam('1', $del, PDO::PARAM_INT);
+				$query->execute();
+
+				if ($query) {
+					header("Location: ?page=flow");
+				}
+			}
+		}
+	}
+
+	//Delete funktionalitet bara för användaren som postade reply
+	if (isset($_GET["deletereply"])) {
+
+		if ($_SESSION["user_id"]) {
+
+			$del = intval($_GET["deletereply"]);
+			$delu = intval($_SESSION["user_id"]);
+
+			$query = $conn->prepare("DELETE FROM replies WHERE r_id = ? AND user_id = ?");
+			$query->bindParam('1', $del, PDO::PARAM_INT);
+			$query->bindParam('2', $delu, PDO::PARAM_INT);
+			$query->execute();
+
+			if ($query) {
+				header("Location: ?page=reply&reply={$_GET["reply"]}");
+			}
+		}
+
+	}
+
+
+
 }

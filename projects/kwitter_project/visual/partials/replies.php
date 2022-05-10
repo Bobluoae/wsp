@@ -4,6 +4,9 @@
 	<!-- Rutan på namn och användartyp -->
 	<div class="border m-1 p-1">
 		<?=$reply["username"]?> | <?=$reply["usertype"]?>
+		<?php if ($_SESSION["user_id"] == $reply["user_id"]): ?>
+			<a class="text-align-right" href="?deletereply=<?=$reply["r_id"]?>&reply=<?=$_GET["reply"]?>">🗑️</a>
+		<?php endif ?>
 	</div>
 
 	<!-- Utskrift av meddelande -->
@@ -33,7 +36,7 @@
 		<?php }
 		echo "Likes: " . $likes . " | Dislikes: " . $dislikes . " ";
 		 ?>
-		<button id="like">Like</button>   
-		<button id="dislike">Dislike</button>
+		<button class="like" value="<?=$reply["r_id"]?>">Like</button>   
+		<button class="dislike" value="<?=$reply["r_id"]?>">Dislike</button>
 	</div>
 </div>

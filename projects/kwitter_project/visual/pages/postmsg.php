@@ -1,3 +1,7 @@
+<?php 
+// Användaren kan bara posta om dom är inloggad
+if (isset($_SESSION["user_id"])) { 
+?>
 <div class="container bg h-100">
   <div class="row align-items-start border">
     <div class="col-2 border col-md-2">
@@ -36,3 +40,4 @@
     </div>
   </div>
 </div>
+<?php } ?>

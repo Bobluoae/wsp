@@ -4,6 +4,9 @@
 	<!-- Rutan på namn och användartyp -->
 	<div class="border m-1 p-1">
 		<?=$message["username"]?> | <?=$message["usertype"]?>
+			<?php if ($_SESSION["user_id"] == $message["user_id"]): ?>
+				<a class="text-align-right" href="?delete=<?=$message["m_id"]?>">🗑️</a>
+			<?php endif ?>
 	</div>
 
 	<!-- Utskrift av meddelande -->
