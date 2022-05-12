@@ -1,5 +1,7 @@
 <?php 
 if(isset($_POST["reg_skickat"])){
+	//Registrering
+	//Error hanterare, om en av dom här stämmer blir error true och message blir felmeddelandet
 
 	if ($_POST["username"] == "" || $_POST["password"] == "" || $_POST['confirm_password'] == "") {
 		$error = true;
@@ -33,7 +35,9 @@ if(isset($_POST["reg_skickat"])){
 		$message = "The confirmation password does not match";
 	}
 
-	if ($error == false) {
+	if ($error == false) { 
+
+		//Om det inte fanns något fel i registreringen, registrera användaren från informationen angivits i formuläret
 
 		$password = sha1($_POST['password']);
 		$usertype = "user";
@@ -44,14 +48,9 @@ if(isset($_POST["reg_skickat"])){
 		$query->bindParam('3', $usertype, PDO::PARAM_STR);
 		$query->execute();
 
-		if ($query) {
-			$_GET["page"] = "flow";
-			
-			$_POST["inlogg_skickat"] = true;
-
-		}else {
-			$error = true;
-			$message = "wtf";
-		}
+		//Sedan gå till Flow
+		$_GET["page"] = "flow";
+		
+		$_POST["inlogg_skickat"] = true;
 	}
 }

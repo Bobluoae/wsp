@@ -37,7 +37,7 @@
 		echo "Likes: " . $likes . " | Dislikes: " . $dislikes . " ";
 		 ?>
 
-
+		 <!-- Knappar för Like samt Dislike och ta bort like/dislike -->
 
 		 <?php if (isMessageLiked($message["m_id"]) == 1): ?>
 		 	<button class="unlike" value="<?=$message["m_id"]?>">Remove like</button>
@@ -51,12 +51,12 @@
 		 	<button class="dislike" value="<?=$message["m_id"]?>">Dislike</button>
 		 <?php endif ?>
 		   
-		
-
-
-
+		 <!-- Reply knapp ska bara synas på flow / myflow / theirflow -->
 		<?php if ($_GET["page"] !== "reply"): ?>
-			<a href="?page=reply&reply=<?= $message["m_id"]?>"><button>Reply</button></a>
+			<a href="?page=reply&reply=<?=$message["m_id"]?>"><button>Reply</button></a>
 		<?php endif ?>
+		Replies: <?php $count = countReplies($message["m_id"]); 
+		echo $count;
+		?>
 	</div>
 </div>

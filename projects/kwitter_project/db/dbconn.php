@@ -1,4 +1,7 @@
 <?php
+
+//Databas connection
+
 $servername = "localhost";
 $username = "root";
 $password = "HemData531";

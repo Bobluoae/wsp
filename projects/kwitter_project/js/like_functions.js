@@ -1,5 +1,7 @@
 <script type="text/javascript">
 
+// Loopa igenom alla knappar från htmlen som har klasser och hämta datat som knapparna har om man klickar för att kunna skicka med AJAX till PHP , se Index $_GET["Ajax"];
+
   const r_likebuttons = document.querySelectorAll(".r_like");
   r_likebuttons.forEach((b)=>{
     b.addEventListener("click", (e)=>{
@@ -10,11 +12,10 @@
   const r_dislikebuttons = document.querySelectorAll(".r_dislike");
   r_dislikebuttons.forEach((b)=>{
     b.addEventListener("click", (e)=>{
-      replyLike(e.target.value,true);
+      replyLike(e.target.value,true); //om det är en dislike skicka med en extra parameter som talar om till php att det är en dislike
     })
   });
 
-// Loopa igenom alla knappar från htmlen som skrivs ut med loopen åvan och få deras värde
   const likebuttons = document.querySelectorAll(".like");
   likebuttons.forEach((b)=>{
     b.addEventListener("click", (e)=>{
@@ -25,11 +26,10 @@
   const dislikebuttons = document.querySelectorAll(".dislike");
   dislikebuttons.forEach((b)=>{
     b.addEventListener("click", (e)=>{
-      postLike(e.target.value,true);
+      postLike(e.target.value,true); //om det är en dislike skicka med en extra parameter som talar om till php att det är en dislike
     })
   });
 
-// Loopa igenom alla knappar från htmlen som skrivs ut med loopen åvan och få deras värde
   const unlikebuttons = document.querySelectorAll(".unlike");
   unlikebuttons.forEach((b)=>{
     b.addEventListener("click", (e)=>{
@@ -44,7 +44,7 @@
     })
   });
 
-
+//Skicka till PHP att du vill ta bort en like på ett meddelande
 function postDeleteLike(m_id){
 
     const payload = {
@@ -75,6 +75,8 @@ function postDeleteLike(m_id){
             alert("Error, cannot add like/dislike to db.");
         });
 }
+
+//Skicka till PHP att du vill ta bort en like på ett reply
 function replyDeleteLike(r_id){
 
     const payload = {
@@ -105,7 +107,8 @@ function replyDeleteLike(r_id){
             alert("Error, cannot add like/dislike to db.");
         });
 }
-//Skicka AJAX request med den tryckta knappens värde till PHP, se Index $_GET["Ajax"]
+
+//Skicka till PHP att du vill likea ett meddelande
 function postLike(m_id, isDislike = false){
 
     const payload = {
@@ -137,7 +140,8 @@ function postLike(m_id, isDislike = false){
             alert("Error, cannot add like/dislike to db.");
         });
 }
-//Skicka AJAX request med den tryckta knappens värde till PHP, se Index $_GET["Ajax"]
+
+//Skicka till PHP att du vill likea ett svar/reply
 function replyLike(r_id, isDislike = false){
 
     const payload = {

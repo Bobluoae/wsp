@@ -36,6 +36,7 @@
 		<?php }
 		echo "Likes: " . $likes . " | Dislikes: " . $dislikes . " ";
 		 ?>
+		  <!-- Knappar för Like samt Dislike och ta bort like/dislike -->
 
 		 <?php if (isReplyLiked($reply["r_id"]) == 1): ?>
 		 	<button class="r_unlike" value="<?=$reply["r_id"]?>">Remove like</button>
@@ -48,8 +49,6 @@
 		 <?php else: ?>
 		 	<button class="r_dislike" value="<?=$reply["r_id"]?>">Dislike</button>
 		 <?php endif ?>
-
-
 
 	</div>
 </div>

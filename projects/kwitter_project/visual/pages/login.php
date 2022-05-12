@@ -1,6 +1,7 @@
  <section>
  	<div class="row align-items-start">
  		<div class="col-6">
+ 			<!-- Logga på Kwitter (hittad på google) -->
  			<img src="pics/dove.png" height="400">
  		</div>
 		<div class="col-3 sm-1 loginform" id="center">
@@ -24,6 +25,7 @@
 				<br>
 				<a class="badge badge-info" href="?page=register">Register an account</a>
 			<?php } else { ?>
+				<!-- När man är inloggad ser man det här bara -->
 				<h1>
 					You are signed in!
 				</h1>

@@ -21,6 +21,7 @@ if (isset($_SESSION["user_id"])) {
 		$text = $_POST["textarea"];
 		$id = $_SESSION["user_id"];
 
+		//HTML entities blir borttagna för att förhindra injections
 		htmlentities($text);
 
 		$query = $conn->prepare("INSERT INTO chat_log SET message = ?, user_id = ?");
@@ -39,6 +40,7 @@ if (isset($_SESSION["user_id"])) {
 		$m_id = $_GET["reply"];
 		$user_id = $_SESSION["user_id"];
 
+		//HTML entities blir borttagna för att förhindra injections
 		htmlentities($rep);
 
 		$query = $conn->prepare("INSERT INTO replies SET reply = ?, m_id = ?, user_id = ?");
@@ -65,7 +67,7 @@ if (isset($_SESSION["user_id"])) {
 	if($_GET["page"] == "myflow"){
 		$messages = getUserPosts($_SESSION["user_id"]);
 	}
-	//Hämta data för alla användarens inlägg
+	//Hämta data för en användares inlägg
 	if ($_GET["theirflow"] && $_GET["page"] == "theirflow") {
 		$messages = getUserPosts($_GET["theirflow"]);
 		$user_info = getUserInfo($_GET["theirflow"]);
@@ -76,7 +78,7 @@ if (isset($_SESSION["user_id"])) {
 	//Delete funktionalitet bara för användaren som postade meddelandet
 	if (isset($_GET["delete"])) {
 
-		//DELETE FROM replies WHERE m_id = $m_id = $_GET["reply"];
+		//Först måste du ta bort alla replies sedan kan du deleta meddelandet (Kan göras i DB med en typ av cascading key(svårt at förklara))
 
 		$del = intval($_GET["delete"]);
 		$delu = intval($_SESSION["user_id"]);
@@ -90,9 +92,8 @@ if (isset($_SESSION["user_id"])) {
 		$query->bindParam('2', $delu, PDO::PARAM_INT);
 		$query->execute();
 
-		if ($query) {
-			header("Location: ?page=flow");
-		}
+		//Förhindra återsendning av delete med header
+		header("Location: ?page=flow");
 	}
 
 	//Delete funktionalitet bara för användaren som postade reply
@@ -106,9 +107,8 @@ if (isset($_SESSION["user_id"])) {
 		$query->bindParam('2', $delu, PDO::PARAM_INT);
 		$query->execute();
 
-		if ($query) {
-			header("Location: ?page=reply&reply={$_GET["reply"]}");
-		}
+		//Förhindra återsendning av delete med header
+		header("Location: ?page=reply&reply={$_GET["reply"]}");
 	}
 
 
