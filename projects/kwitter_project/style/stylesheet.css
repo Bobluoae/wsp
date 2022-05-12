@@ -161,4 +161,6 @@ td a {
 .loginform {
   background-color: gray;
   font-size: 20px;
+  min-width: 350px;
+  max-width: 350px;
 }

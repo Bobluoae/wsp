@@ -7,7 +7,7 @@ if (!isset($_GET["theirflow"])) {
 	$_GET["theirflow"] = false;
 }
 if (!isset($_GET["page"])) {
-	$_GET["page"] = "";
+	$_GET["page"] = "login";
 }
 if (!isset($_SESSION["usertype"])) {
 	$_SESSION["usertype"] = "";

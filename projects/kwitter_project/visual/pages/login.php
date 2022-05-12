@@ -1,12 +1,9 @@
  <section>
  	<div class="row align-items-start">
- 		<div class="col-3">
-
- 		</div>
- 		<div class="col-3">
+ 		<div class="col-6">
  			<img src="pics/dove.png" height="400">
  		</div>
-		<div class="col-3 loginform" id="center">
+		<div class="col-3 sm-1 loginform" id="center">
 			<?php if (!isset($_SESSION["isLoggedIn"])) {  
 				//Error hanterare
 				if ($error == true) {
