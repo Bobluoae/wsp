@@ -1,10 +1,5 @@
-<?php 
-// Användaren kan bara se Flow om dom är inloggad
-if (isset($_SESSION["user_id"])) { 
-?>
-
-
-
+<?php // Användaren kan bara se Myflow om dom är inloggad
+if (isset($_SESSION["isLoggedIn"])): ?>
 <div class="container bg">
   <div class="row align-items-start border">
 
@@ -37,7 +32,6 @@ if (isset($_SESSION["user_id"])) {
     <?php include "visual/partials/rightpanel.php"; ?>
   </div>
 </div>
-<?php } ?>
 <script type="text/javascript">
 
 // Loopa igenom alla knappar från htmlen som skrivs ut med loopen åvan och få deras värde
@@ -89,3 +83,4 @@ function postLike(m_id, isDislike = false){
 }
 
 </script>
+<?php endif ?>

@@ -1,7 +1,11 @@
   <!-- Navbar -->
   <header class="mb-auto">
     <div>
-      <h3 class="mb-0">Kwitter</h3>
+      <?php if (isset($_SESSION["isLoggedIn"])) { ?>
+        <h3 class="mb-0"><a style="text-decoration: none!important; color: white;" href="?page=flow">Kwitter</a></h3>
+      <?php } else { ?>
+        <h3 class="mb-0"><a style="text-decoration: none!important; color: white;" href="?page=login">Kwitter</a></h3>
+      <?php } ?>
  <!--      <nav class="nav nav-masthead justify-content-center">
         <a class="nav-link" href="?page=login">Sign in</a>
         <a class="nav-link" href="?page=flow">Flow</a> -->

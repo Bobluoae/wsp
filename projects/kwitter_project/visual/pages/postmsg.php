@@ -1,7 +1,5 @@
-<?php 
-// Användaren kan bara posta om dom är inloggad
-if (isset($_SESSION["user_id"])) { 
-?>
+<?php // Användaren kan bara lägga upp inlägg om dom är inloggad
+if (isset($_SESSION["isLoggedIn"])): ?>
 <div class="container bg">
   <div class="row align-items-start border">
     <!-- inkludera sidopanel -->
@@ -21,4 +19,4 @@ if (isset($_SESSION["user_id"])) {
     <?php include "visual/partials/rightpanel.php"; ?>
   </div>
 </div>
-<?php } ?>
+<?php endif ?>

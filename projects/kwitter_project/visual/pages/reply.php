@@ -1,3 +1,5 @@
+<?php //Användaren kan bara se replies om de är inloggade
+if (isset($_SESSION["isLoggedIn"])): ?>
 <div class="container bg">
   <div class="row align-items-start border">
     <!-- inkludera sidopanel -->
@@ -89,3 +91,4 @@ function replyLike(r_id, isDislike = false){
 }
 
 </script>
+<?php endif ?>
