@@ -43,3 +43,65 @@ function getReplies($m_id) {
 
 	return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+function getMessageLikes($m_id) {
+	global $conn;
+	//Hämta alla replies, alla nyaste replies blir först på listan
+	$query = $conn->prepare("SELECT COUNT(*) FROM m_likes WHERE `like` = 1 AND m_id = ?;");
+	$query->bindParam('1', $m_id, PDO::PARAM_INT);
+	$query->execute();
+
+	return $query->fetchColumn(0);
+}
+function getMessageDislikes($m_id) {
+	global $conn;
+	//Hämta alla replies, alla nyaste replies blir först på listan
+	$query = $conn->prepare("SELECT COUNT(*) FROM m_likes WHERE `like` = -1 AND m_id = ?;");
+	$query->bindParam('1', $m_id, PDO::PARAM_INT);
+	$query->execute();
+
+	return $query->fetchColumn(0);
+}
+function getReplyLikes($r_id) {
+	global $conn;
+	//Hämta alla replies, alla nyaste replies blir först på listan
+	$query = $conn->prepare("SELECT COUNT(*) FROM r_likes WHERE `like` = 1 AND r_id = ?;");
+	$query->bindParam('1', $r_id, PDO::PARAM_INT);
+	$query->execute();
+
+	return $query->fetchColumn(0);
+}
+function getReplyDislikes($r_id) {
+	global $conn;
+	//Hämta alla replies, alla nyaste replies blir först på listan
+	$query = $conn->prepare("SELECT COUNT(*) FROM r_likes WHERE `like` = -1 AND r_id = ?;");
+	$query->bindParam('1', $r_id, PDO::PARAM_INT);
+	$query->execute();
+
+	return $query->fetchColumn(0);
+}
+function isMessageLiked($m_id){
+	global $conn;
+	//Hämta alla replies, alla nyaste replies blir först på listan
+	$query = $conn->prepare("SELECT * FROM m_likes WHERE m_id = ? AND user_id = ?");
+	$query->bindParam('1', $m_id, PDO::PARAM_INT);
+	$query->bindParam('2', $_SESSION["user_id"], PDO::PARAM_INT);
+	$query->execute();
+	if ($query->rowCount() == 1) {
+		return $query->fetchColumn(3);
+	} else {
+		return 0;
+	}
+}
+function isReplyLiked($r_id){
+	global $conn;
+	//Hämta alla replies, alla nyaste replies blir först på listan
+	$query = $conn->prepare("SELECT * FROM r_likes WHERE r_id = ? AND user_id = ?");
+	$query->bindParam('1', $r_id, PDO::PARAM_INT);
+	$query->bindParam('2', $_SESSION["user_id"], PDO::PARAM_INT);
+	$query->execute();
+	if ($query->rowCount() == 1) {
+		return $query->fetchColumn(3);
+	} else {
+		return 0;
+	}
+}

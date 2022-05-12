@@ -76,8 +76,14 @@ if (isset($_SESSION["user_id"])) {
 	//Delete funktionalitet bara för användaren som postade meddelandet
 	if (isset($_GET["delete"])) {
 
+		//DELETE FROM replies WHERE m_id = $m_id = $_GET["reply"];
+
 		$del = intval($_GET["delete"]);
 		$delu = intval($_SESSION["user_id"]);
+
+		$query = $conn->prepare("DELETE FROM replies WHERE m_id = ?");
+		$query->bindParam('1', $del, PDO::PARAM_INT);
+		$query->execute();
 
 		$query = $conn->prepare("DELETE FROM chat_log WHERE m_id = ? AND user_id = ?");
 		$query->bindParam('1', $del, PDO::PARAM_INT);
@@ -104,6 +110,8 @@ if (isset($_SESSION["user_id"])) {
 			header("Location: ?page=reply&reply={$_GET["reply"]}");
 		}
 	}
+
+
 
 
 

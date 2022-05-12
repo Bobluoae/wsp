@@ -18,8 +18,8 @@
 		<!-- Kalkylerar Like-Dislike Ratio -->
 		<?php
 
-			$dislikes = $message["dislikes"];
-			$likes = $message["likes"];
+			$likes = getMessageLikes($message["m_id"]);
+			$dislikes = getMessageDislikes($message["m_id"]);
 
 			$sum = 0;
 			$sum = $dislikes + $likes;
@@ -37,8 +37,24 @@
 		echo "Likes: " . $likes . " | Dislikes: " . $dislikes . " ";
 		 ?>
 
-		<button class="like" value="<?=$message["m_id"]?>">Like</button>   
-		<button class="dislike" value="<?=$message["m_id"]?>">Dislike</button>
+
+
+		 <?php if (isMessageLiked($message["m_id"]) == 1): ?>
+		 	<button class="unlike" value="<?=$message["m_id"]?>">Remove like</button>
+		 <?php else: ?>
+		 	<button class="like" value="<?=$message["m_id"]?>">Like</button>
+		 <?php endif ?>
+
+		  <?php if (isMessageLiked($message["m_id"]) == -1): ?>
+		 	<button class="unlike" value="<?=$message["m_id"]?>">Remove dislike</button>
+		 <?php else: ?>
+		 	<button class="dislike" value="<?=$message["m_id"]?>">Dislike</button>
+		 <?php endif ?>
+		   
+		
+
+
+
 		<?php if ($_GET["page"] !== "reply"): ?>
 			<a href="?page=reply&reply=<?= $message["m_id"]?>"><button>Reply</button></a>
 		<?php endif ?>

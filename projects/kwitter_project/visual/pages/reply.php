@@ -40,55 +40,6 @@ if (isset($_SESSION["isLoggedIn"])): ?>
     <?php include "visual/partials/rightpanel.php"; ?>
   </div>
 </div>
-<script type="text/javascript">
-
-// Loopa igenom alla knappar från htmlen som skrivs ut med loopen åvan och få deras värde
-  const likebuttons = document.querySelectorAll(".like");
-  likebuttons.forEach((b)=>{
-    b.addEventListener("click", (e)=>{
-      replyLike(e.target.value);
-    })
-  });
-
-  const dislikebuttons = document.querySelectorAll(".dislike");
-  dislikebuttons.forEach((b)=>{
-    b.addEventListener("click", (e)=>{
-      replyLike(e.target.value,true);
-    })
-  });
-
-//Skicka AJAX request med den tryckta knappens värde till PHP, se Index $_GET["Ajax"]
-function replyLike(r_id, isDislike = false){
-
-    const payload = {
-        replyId: r_id,
-        isDislike: isDislike
-    };
-
-    requestObj = {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        redirect: 'follow', 
-        referrerPolicy: 'no-referrer',
-        body: JSON.stringify(payload)
-    }
-
-    fetch('index.php?ajax=like_reply', requestObj)
-        .then(response => {
-            if(response.ok) return response.json();
-            throw new Error('something went wrong');
-        }).then(data => {
-            console.log(data);
-        }).catch((error) => {
-            console.error('Error:', error);
-            alert("Error, cannot add like/dislike to db.");
-        });
-}
-
-</script>
-<?php endif ?>
+<?php 
+include "js/like_functions.js";
+endif ?>

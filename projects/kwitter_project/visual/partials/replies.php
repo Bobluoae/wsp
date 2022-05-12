@@ -17,8 +17,8 @@
 
 		<!-- Kalkylerar Like-Dislike Ratio -->
 		<?php
-			$dislikes = $reply["dislikes"];
-			$likes = $reply["likes"];
+			$likes = getReplyLikes($reply["r_id"]);
+			$dislikes = getReplyDislikes($reply["r_id"]);
 
 			$sum = 0;
 			$sum = $dislikes + $likes;
@@ -36,7 +36,20 @@
 		<?php }
 		echo "Likes: " . $likes . " | Dislikes: " . $dislikes . " ";
 		 ?>
-		<button class="like" value="<?=$reply["r_id"]?>">Like</button>   
-		<button class="dislike" value="<?=$reply["r_id"]?>">Dislike</button>
+
+		 <?php if (isReplyLiked($reply["r_id"]) == 1): ?>
+		 	<button class="r_unlike" value="<?=$reply["r_id"]?>">Remove like</button>
+		 <?php else: ?>
+		 	<button class="r_like" value="<?=$reply["r_id"]?>">Like</button>
+		 <?php endif ?>
+
+		  <?php if (isReplyLiked($reply["r_id"]) == -1): ?>
+		 	<button class="r_unlike" value="<?=$reply["r_id"]?>">Remove dislike</button>
+		 <?php else: ?>
+		 	<button class="r_dislike" value="<?=$reply["r_id"]?>">Dislike</button>
+		 <?php endif ?>
+
+
+
 	</div>
 </div>
