@@ -15,7 +15,12 @@ if (isset($_SESSION["user_id"])) {
     <!-- Mittenpanel med huvudinnehåll -->
     <div class="col-8 border col-md-8">
    		<div class="m-1 p-4">
-
+        <div class="border m-4 p-4">
+          <?php
+            echo "This is ".$_SESSION["username"]."'s flow!";
+            echo "<br>Usertype: ".$_SESSION["usertype"];
+          ?>
+        </div>
    			<?php 
           //Loopa genom alla meddelanden från användaren
           foreach ($messages as $message) {

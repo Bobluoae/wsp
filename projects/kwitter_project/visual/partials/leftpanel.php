@@ -3,6 +3,6 @@
 		<a href="?page=postmsg"><button>Post</button></a><br><hr>
 		<a href="?page=flow"><button>Flow</button></a><br><hr>
 		<a href="?page=myflow"><button>Your Flow</button></a><br><hr>
-		<button>Your account</button><br><hr>
+		<a href="?page=login"><button>Your account</button></a><br><hr>
 	</div>
 </div>

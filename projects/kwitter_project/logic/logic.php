@@ -21,6 +21,8 @@ if (isset($_SESSION["user_id"])) {
 		$text = $_POST["textarea"];
 		$id = $_SESSION["user_id"];
 
+		htmlentities($text);
+
 		$query = $conn->prepare("INSERT INTO chat_log SET message = ?, user_id = ?");
 		$query->bindParam('1', $text, PDO::PARAM_STR);
 		$query->bindParam('2', $id, PDO::PARAM_INT);
@@ -36,6 +38,8 @@ if (isset($_SESSION["user_id"])) {
 		$rep = $_POST["textarea"];
 		$m_id = $_GET["reply"];
 		$user_id = $_SESSION["user_id"];
+
+		htmlentities($rep);
 
 		$query = $conn->prepare("INSERT INTO replies SET reply = ?, m_id = ?, user_id = ?");
 		$query->bindParam('1', $rep, PDO::PARAM_STR);

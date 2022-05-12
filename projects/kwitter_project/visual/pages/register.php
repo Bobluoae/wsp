@@ -1,6 +1,12 @@
  <section>
-	<div>
-		<div id="center">
+	<div class="row align-items-start">
+ 		<div class="col-3">
+
+ 		</div>
+ 		<div class="col-3">
+ 			<img src="pics/dove.png" height="400">
+ 		</div>
+		<div class="col-3 loginform" id="center">
 			<div>
 				<h1>
 						Register an account
@@ -19,7 +25,7 @@
 						<input type="password" name="confirm_password"><br>
 						<input type="submit" name="register" value="Registrera"><br>
 					</form>
-					<br><a href="?page=login">Go to Sign in</a>
+					<br><a class="badge badge-info" href="?page=login">Go to Sign in</a>
 				<?php } else { ?>
 					<h2>Hello, <?=$_SESSION["username"]?>! You should not be here...</h2>
 					<br>
@@ -27,5 +33,8 @@
 				<?php } ?>
 			</div>
 		</div>
+		<div class="col-3">
+
+ 		</div>
 	</div>
  </section>
