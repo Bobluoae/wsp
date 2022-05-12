@@ -34,7 +34,7 @@
 			<?php echo '<span style="font-size: 15px">'. $result .'%</span>';?>
 		</div>
 		<?php }
-		echo "Likes: " . $likes . " | Dislikes: " . $dislikes . " ";
+		echo 'Likes: <span id="r_like_'.$reply["r_id"].'">' . $likes . '</span> | Dislikes: <span id="r_dislike_'.$reply["r_id"].'">' . $dislikes . '</span>';
 		 ?>
 		  <!-- Knappar för Like samt Dislike och ta bort like/dislike -->
 

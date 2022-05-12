@@ -19,21 +19,28 @@
   const likebuttons = document.querySelectorAll(".like");
   likebuttons.forEach((b)=>{
     b.addEventListener("click", (e)=>{
-      postLike(e.target.value);
+      postLike(e.target.value,false,e);
     })
   });
 
   const dislikebuttons = document.querySelectorAll(".dislike");
   dislikebuttons.forEach((b)=>{
     b.addEventListener("click", (e)=>{
-      postLike(e.target.value,true); //om det är en dislike skicka med en extra parameter som talar om till php att det är en dislike
+      postLike(e.target.value,true,e); //om det är en dislike skicka med en extra parameter som talar om till php att det är en dislike
     })
   });
 
-  const unlikebuttons = document.querySelectorAll(".unlike");
-  unlikebuttons.forEach((b)=>{
+  const unlike_likebuttons = document.querySelectorAll(".unlike_like");
+  unlike_likebuttons.forEach((b)=>{
     b.addEventListener("click", (e)=>{
-      postDeleteLike(e.target.value);
+      postDeleteLike(e.target.value,false,e);
+    })
+  });
+
+  const unlike_dislikebuttons = document.querySelectorAll(".unlike_dislike");
+  unlike_dislikebuttons.forEach((b)=>{
+    b.addEventListener("click", (e)=>{
+      postDeleteLike(e.target.value,true,e);
     })
   });
 
@@ -45,7 +52,7 @@
   });
 
 //Skicka till PHP att du vill ta bort en like på ett meddelande
-function postDeleteLike(m_id){
+function postDeleteLike(m_id, isDislike = false, event){
 
     const payload = {
         unlikeId: m_id,
@@ -65,10 +72,31 @@ function postDeleteLike(m_id){
     }
 
     fetch('index.php?ajax=unlike_post', requestObj)
-        .then(response => {
-            if(response.ok) return response.json();
-            throw new Error('something went wrong');
-        }).then(data => {
+         .then(response => response.json())
+
+         .then(data => {
+
+            if(data.action == "unlike_post") {
+              
+              if (isDislike == false) {
+                const find = "m_like_" + m_id;
+                const like_span = document.getElementById(find);
+                like_span.innerHTML = Number(like_span.innerHTML) - 1;
+                event.target.style.display = "none";
+                const nextEl = event.target.previousElementSibling;
+                nextEl.style.display = "inline";
+              } else {
+                const find = "m_dislike_" + m_id;
+                const like_span = document.getElementById(find);
+                like_span.innerHTML = Number(like_span.innerHTML) - 1;
+                event.target.style.display = "none";
+                const nextEl = event.target.previousElementSibling;
+                nextEl.style.display = "inline";
+
+              }
+
+            }
+
             console.log(data);
         }).catch((error) => {
             console.error('Error:', error);
@@ -97,10 +125,15 @@ function replyDeleteLike(r_id){
     }
 
     fetch('index.php?ajax=unlike_reply', requestObj)
-        .then(response => {
-            if(response.ok) return response.json();
-            throw new Error('something went wrong');
-        }).then(data => {
+         .then(response => response.json())
+
+         .then(data => {
+
+            if(data.action == "unlike_reply") {
+              const find = "m_like_" + m_id;
+              const like_span = document.getElementById(find);
+              like_span.innerHTML = Number(like_span.innerHTML) + 1;
+            }
             console.log(data);
         }).catch((error) => {
             console.error('Error:', error);
@@ -109,7 +142,7 @@ function replyDeleteLike(r_id){
 }
 
 //Skicka till PHP att du vill likea ett meddelande
-function postLike(m_id, isDislike = false){
+function postLike(m_id, isDislike = false, event){
 
     const payload = {
         messageId: m_id,
@@ -130,10 +163,29 @@ function postLike(m_id, isDislike = false){
     }
 
     fetch('index.php?ajax=like_post', requestObj)
-        .then(response => {
-            if(response.ok) return response.json();
-            throw new Error('something went wrong');
-        }).then(data => {
+         .then(response => response.json())
+
+         .then(data => {
+
+
+            if(data.action =="like_post" ) {
+              const find = "m_like_" + m_id;
+              const like_span = document.getElementById(find);
+              like_span.innerHTML = Number(like_span.innerHTML) + 1;
+              event.target.style.display = "none";
+              const nextEl = event.target.nextElementSibling;
+              nextEl.style.display = "inline";
+            }
+            if(data.action =="dislike_post" ) {
+              const find = "m_dislike_" + m_id;
+              const like_span = document.getElementById(find);
+              like_span.innerHTML = Number(like_span.innerHTML) + 1;
+              event.target.style.display = "none";
+              const nextEl = event.target.nextElementSibling;
+              nextEl.style.display = "inline";
+
+            }
+
             console.log(data);
         }).catch((error) => {
             console.error('Error:', error);
@@ -163,10 +215,20 @@ function replyLike(r_id, isDislike = false){
     }
 
     fetch('index.php?ajax=like_reply', requestObj)
-        .then(response => {
-            if(response.ok) return response.json();
-            throw new Error('something went wrong');
-        }).then(data => {
+         .then(response => response.json())
+
+         .then(data => {
+
+            if(data.action == "like_reply") {
+              const find = "r_like_" + r_id;
+              const like_span = document.getElementById(find);
+              like_span.innerHTML = Number(like_span.innerHTML) + 1;
+            }
+            if(data.action == "dislike_reply") {
+              const find = "r_dislike_" + r_id;
+              const like_span = document.getElementById(find);
+              like_span.innerHTML = Number(like_span.innerHTML) + 1;
+            }
             console.log(data);
         }).catch((error) => {
             console.error('Error:', error);

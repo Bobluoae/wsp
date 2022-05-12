@@ -15,43 +15,19 @@ if ($_GET["ajax"] == "like_post") {
 	$query->bindParam('2', $_SESSION["user_id"], PDO::PARAM_INT);
 	$query->execute();
 
-	//Skicka en respons till webbläsaren
 	header("Content-Type: application/json");
-	echo json_encode("Ok!" . $payload->messageId ." | ". $_SESSION["user_id"]);
-	exit();
-}
-
-//unlikea alltså ta bort din like eller dislike från ett message/Kwitt
-if ($_GET["ajax"] == "unlike_post") {
-	//Lägger datat i en payload som kan refereras till
-	$payload = json_decode(file_get_contents("php://input"));
-
-	//Updatera datat på "m_likes" i DB
-	$query = $conn->prepare("DELETE FROM m_likes WHERE m_id = ? AND user_id = ?");
-	$query->bindParam('1', $payload->unlikeId, PDO::PARAM_INT);
-	$query->bindParam('2', $_SESSION["user_id"], PDO::PARAM_INT);
-	$query->execute();
-
+	
+	if ($query->rowCount()) {
+		if ($payload->isDislike == true){
+			echo json_encode(["action" => "dislike_post", "dislike_post" => $payload->messageId]);
+		} else {
+			echo json_encode(["action" => "like_post", "like_post" => $payload->messageId]);
+		}
+	} else {
+		echo json_encode("no_change");
+	}
 	//Skicka en respons till webbläsaren
-	header("Content-Type: application/json");
-	echo json_encode("Deleted Message Like!" . $payload->unlikeId ." | ". $_SESSION["user_id"]);
-	exit();
-}
-
-//Ta bort Like/Dislike på Reply på en kwitt
-if ($_GET["ajax"] == "unlike_reply") {
-	//Lägger datat i en payload som kan refereras till
-	$payload = json_decode(file_get_contents("php://input"));
-
-	//Updatera datat på "r_likes" i DB
-	$query = $conn->prepare("DELETE FROM r_likes WHERE r_id = ? AND user_id = ?");
-	$query->bindParam('1', $payload->r_unlikeId, PDO::PARAM_INT);
-	$query->bindParam('2', $_SESSION["user_id"], PDO::PARAM_INT);
-	$query->execute();
-
-	//Skicka en respons till webbläsaren
-	header("Content-Type: application/json");
-	echo json_encode("Deleted Reply Like!" . $payload->r_unlikeId ." | ". $_SESSION["user_id"]);
+	
 	exit();
 }
 
@@ -70,8 +46,59 @@ if ($_GET["ajax"] == "like_reply") {
 	$query->bindParam('2', $_SESSION["user_id"], PDO::PARAM_INT);
 	$query->execute();
 
+	header("Content-Type: application/json");
+	
+	if ($query->rowCount()) {
+		if ($payload->isDislike == true){
+			echo json_encode(["action" => "dislike_reply", "dislike_reply" => $payload->replyId]);
+		} else {
+			echo json_encode(["action" => "like_reply", "like_reply" => $payload->replyId]);
+		}
+	} else {
+		echo json_encode("no_change");
+	}
+	//Skicka en respons till webbläsaren
+	
+	exit();
+}
+
+//unlikea alltså ta bort din like eller dislike från ett message/Kwitt
+if ($_GET["ajax"] == "unlike_post") {
+	//Lägger datat i en payload som kan refereras till
+	$payload = json_decode(file_get_contents("php://input"));
+
+	//Updatera datat på "m_likes" i DB
+	$query = $conn->prepare("DELETE FROM m_likes WHERE m_id = ? AND user_id = ?");
+	$query->bindParam('1', $payload->unlikeId, PDO::PARAM_INT);
+	$query->bindParam('2', $_SESSION["user_id"], PDO::PARAM_INT);
+	$query->execute();
+
 	//Skicka en respons till webbläsaren
 	header("Content-Type: application/json");
-	echo json_encode("Ok!" . $payload->replyId ." | ". $_SESSION["user_id"]);
+
+	if ($query->rowCount()) {
+		echo json_encode(["action" => "unlike_post", "unlike_post" => $payload->unlikeId]);
+	}
+	else {
+		echo json_encode("no_change");
+	}
+
+	exit();
+}
+
+//Ta bort Like/Dislike på Reply på en kwitt
+if ($_GET["ajax"] == "unlike_reply") {
+	//Lägger datat i en payload som kan refereras till
+	$payload = json_decode(file_get_contents("php://input"));
+
+	//Updatera datat på "r_likes" i DB
+	$query = $conn->prepare("DELETE FROM r_likes WHERE r_id = ? AND user_id = ?");
+	$query->bindParam('1', $payload->r_unlikeId, PDO::PARAM_INT);
+	$query->bindParam('2', $_SESSION["user_id"], PDO::PARAM_INT);
+	$query->execute();
+
+	//Skicka en respons till webbläsaren
+	header("Content-Type: application/json");
+	echo json_encode(["action" => "unlike_reply", "unlike_reply" => $payload->r_unlikeId]);
 	exit();
 }

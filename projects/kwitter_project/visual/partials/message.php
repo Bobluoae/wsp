@@ -34,23 +34,16 @@
 			<?php echo '<span style="font-size: 15px">'. $result .'%</span>';?>
 		</div>
 		<?php }
-		echo "Likes: " . $likes . " | Dislikes: " . $dislikes . " ";
+		echo 'Likes: <span id="m_like_'.$message["m_id"].'">' . $likes . '</span> | Dislikes: <span id="m_dislike_'.$message["m_id"].'">' . $dislikes . '</span>';
 		 ?>
 
 		 <!-- Knappar för Like samt Dislike och ta bort like/dislike -->
+		<button style="display: <?php echo isMessageLiked($message["m_id"]) == 1 ? "none" : "inline" ?>;"class="like" value="<?=$message["m_id"]?>">Like</button>
+		<button style="display: <?php echo isMessageLiked($message["m_id"]) == 1 ? "inline" : "none" ?>;" class="unlike_like" value="<?=$message["m_id"]?>">Remove like</button>
 
-		 <?php if (isMessageLiked($message["m_id"]) == 1): ?>
-		 	<button class="unlike" value="<?=$message["m_id"]?>">Remove like</button>
-		 <?php else: ?>
-		 	<button class="like" value="<?=$message["m_id"]?>">Like</button>
-		 <?php endif ?>
-
-		  <?php if (isMessageLiked($message["m_id"]) == -1): ?>
-		 	<button class="unlike" value="<?=$message["m_id"]?>">Remove dislike</button>
-		 <?php else: ?>
-		 	<button class="dislike" value="<?=$message["m_id"]?>">Dislike</button>
-		 <?php endif ?>
-		   
+		<button style="display: <?php echo isMessageLiked($message["m_id"]) == -1 ? "none" : "inline" ?>;"class="dislike" value="<?=$message["m_id"]?>">Dislike</button>
+		<button style="display: <?php echo isMessageLiked($message["m_id"]) == -1 ? "inline" : "none" ?>;" class="unlike_dislike" value="<?=$message["m_id"]?>">Remove dislike</button>
+   
 		 <!-- Reply knapp ska bara synas på flow / myflow / theirflow -->
 		<?php if ($_GET["page"] !== "reply"): ?>
 			<a href="?page=reply&reply=<?=$message["m_id"]?>"><button>Reply</button></a>
