@@ -29,9 +29,12 @@ if ($_GET["page"] == "register") {
 if ($_GET["page"] == "flow") {
 	include "visual/pages/flow.php";
 }
-// if ($_GET["page"] == "myflow") {
-// 	include "visual/pages/myflow.php";
-// }
+if ($_GET["page"] == "theirflow") {
+	include "visual/pages/theirflow.php";
+}
+if ($_GET["page"] == "myflow") {
+	include "visual/pages/myflow.php";
+}
 if ($_GET["page"] == "postmsg") {
 	include "visual/pages/postmsg.php";
 }

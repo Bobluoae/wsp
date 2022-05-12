@@ -6,6 +6,9 @@ $user = getUserInfo();
 if (!isset($_GET["reply"])) {
 	$_GET["reply"] = false;
 }
+if (!isset($_GET["theirflow"])) {
+	$_GET["theirflow"] = false;
+}
 if (!isset($_GET["page"])) {
 	$_GET["page"] = "";
 }
@@ -57,44 +60,47 @@ if (isset($_SESSION["user_id"])) {
 	if($_GET["page"] == "flow"){
 		$messages = getMessages();
 	}
+	//Hämta data för alla dina inlägg
+	if($_GET["page"] == "myflow"){
+		$messages = getUserPosts($_SESSION["user_id"]);
+	}
+	//Hämta data för alla användarens inlägg
+	if ($_GET["theirflow"] && $_GET["page"] == "theirflow") {
+		$messages = getUserPosts($_GET["theirflow"]);
+
+		// header("Location: ?page=theirflow&theirflow={$_GET["thierflow"]}");	
+	}
 
 	//Delete funktionalitet bara för användaren som postade meddelandet
 	if (isset($_GET["delete"])) {
-		$messages = getMessages();
-		foreach ($messages as $message) {
-			if ($_SESSION["user_id"] == $message["user_id"] && $_GET["delete"] == $message["m_id"]) {
 
-				$del = intval($_GET["delete"]);
+		$del = intval($_GET["delete"]);
+		$delu = intval($_SESSION["user_id"]);
 
-				$query = $conn->prepare("DELETE FROM chat_log WHERE m_id = ?");
-				$query->bindParam('1', $del, PDO::PARAM_INT);
-				$query->execute();
+		$query = $conn->prepare("DELETE FROM chat_log WHERE m_id = ? AND user_id = ?");
+		$query->bindParam('1', $del, PDO::PARAM_INT);
+		$query->bindParam('2', $delu, PDO::PARAM_INT);
+		$query->execute();
 
-				if ($query) {
-					header("Location: ?page=flow");
-				}
-			}
+		if ($query) {
+			header("Location: ?page=flow");
 		}
 	}
 
 	//Delete funktionalitet bara för användaren som postade reply
 	if (isset($_GET["deletereply"])) {
 
-		if ($_SESSION["user_id"]) {
+		$del = intval($_GET["deletereply"]);
+		$delu = intval($_SESSION["user_id"]);
 
-			$del = intval($_GET["deletereply"]);
-			$delu = intval($_SESSION["user_id"]);
+		$query = $conn->prepare("DELETE FROM replies WHERE r_id = ? AND user_id = ?");
+		$query->bindParam('1', $del, PDO::PARAM_INT);
+		$query->bindParam('2', $delu, PDO::PARAM_INT);
+		$query->execute();
 
-			$query = $conn->prepare("DELETE FROM replies WHERE r_id = ? AND user_id = ?");
-			$query->bindParam('1', $del, PDO::PARAM_INT);
-			$query->bindParam('2', $delu, PDO::PARAM_INT);
-			$query->execute();
-
-			if ($query) {
-				header("Location: ?page=reply&reply={$_GET["reply"]}");
-			}
+		if ($query) {
+			header("Location: ?page=reply&reply={$_GET["reply"]}");
 		}
-
 	}
 
 

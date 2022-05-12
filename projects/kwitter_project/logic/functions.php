@@ -16,7 +16,16 @@ function getOneMessage($id) {
 
 	return $query->fetch(PDO::FETCH_ASSOC);
 }
-function getUserInfo (){
+function getUserPosts($user_id) {
+	global $conn;
+	//Hämta alla meddelanden av en användare
+	$query = $conn->prepare("SELECT * FROM chat_log, users WHERE chat_log.user_id = users.user_id AND chat_log.user_id = ? ORDER BY m_id DESC");
+	$query->bindParam('1', $user_id, PDO::PARAM_INT);
+	$query->execute();
+
+	return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+function getUserInfo(){
 	global $conn;
 	//All information om en användare
 	if (isset($_SESSION["user_id"])) {

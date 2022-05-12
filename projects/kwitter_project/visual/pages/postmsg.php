@@ -2,42 +2,23 @@
 // Användaren kan bara posta om dom är inloggad
 if (isset($_SESSION["user_id"])) { 
 ?>
-<div class="container bg h-100">
+<div class="container bg">
   <div class="row align-items-start border">
-    <div class="col-2 border col-md-2">
-    	<div class="m-1">
-			<button>Post</button><br><hr>
-			<button>Flow</button><br><hr>
-			<button>Your Flow</button><br><hr>
-			<button>Your account</button><br><hr>
-		</div>
-    </div>
+    <!-- inkludera sidopanel -->
+    <?php include "visual/partials/leftpanel.php"; ?>
+
+    <!-- Mittenpanel med huvudinnehåll -->
     <div class="col-8 border col-md-8">
-   		<div class="m-1 p-4">
-
-   			<?php 
-   					include "logic/upload_post.php";
-   			 ?>
-
-   		</div>
+      <div class="m-1 p-4">
+        <?php 
+          //posta meddelande form
+          include "logic/upload_post.php";
+         ?>
+      </div>
     </div>
-    <div class="col-2 border col-md-2">
-     	<div class="m-1 p-1">
-     		Friend 1<hr>
-     	</div>
-     	<div class="m-1 p-1">
-     		Friend 2<hr>
-     	</div>
-     	<div class="m-1 p-1">
-     		Friend 3<hr>
-     	</div>
-     	<div class="m-1 p-1">
-     		Friend 4<hr>
-     	</div>
-     	<div class="m-1 p-1">
-     		Friend 5<hr>
-     	</div>
-    </div>
+   		
+     <!-- inkludera högerpanel -->
+    <?php include "visual/partials/rightpanel.php"; ?>
   </div>
 </div>
 <?php } ?>

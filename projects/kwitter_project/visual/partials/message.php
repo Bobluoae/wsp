@@ -2,9 +2,9 @@
 <div class="border m-1 p-2 mb-5">
 
 	<!-- Rutan på namn och användartyp -->
-	<div class="border m-1 p-1">
-		<?=$message["username"]?> | <?=$message["usertype"]?>
-			<?php if ($_SESSION["user_id"] == $message["user_id"]): ?>
+	<div class="border m-1 p-1" id="name">
+		<a class="badge badge-info"href="?page=theirflow&theirflow=<?=$message["user_id"]?>"><?=$message["username"]?> | <?=$message["usertype"]?></a>
+			<?php if ($_SESSION["user_id"] == $message["user_id"] || $_SESSION["usertype"] == "admin"): ?>
 				<a class="text-align-right" href="?delete=<?=$message["m_id"]?>">🗑️</a>
 			<?php endif ?>
 	</div>

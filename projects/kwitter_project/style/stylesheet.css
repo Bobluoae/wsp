@@ -154,3 +154,7 @@ td a {
 .text-align-right {
   float:right;
 }
+
+.badge-info{
+  font-size: 17px !important;
+}
