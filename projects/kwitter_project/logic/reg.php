@@ -8,8 +8,10 @@ if(isset($_POST["reg_skickat"])){
 		$message = "You need to write in all forms";
 	}
 
-	$name = $_POST["username"];
+	$nam = $_POST["username"];
 	
+	$name = htmlentities($nam);
+
 	$query = $conn->prepare("SELECT * FROM users WHERE username = ?");
 	$query->bindParam('1', $name, PDO::PARAM_STR);
 	$query->execute();

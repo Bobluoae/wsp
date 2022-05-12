@@ -3,8 +3,10 @@ if(isset($_POST["inlogg_skickat"])){
 
 	//Användaren ska logga in med det angivits i inloggningsformuläret
 
-	$name = $_POST["username"];
+	$nam = $_POST["username"];
 	$pass = sha1($_POST['password']);
+
+	$name = htmlentities($nam);
 	
 	$query = $conn->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
 	$query->bindParam('1', $name, PDO::PARAM_STR);
