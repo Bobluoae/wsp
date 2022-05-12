@@ -1,7 +1,4 @@
 <?php
-
-$user = getUserInfo();
-
 //Definera variabler
 if (!isset($_GET["reply"])) {
 	$_GET["reply"] = false;
@@ -67,6 +64,7 @@ if (isset($_SESSION["user_id"])) {
 	//Hämta data för alla användarens inlägg
 	if ($_GET["theirflow"] && $_GET["page"] == "theirflow") {
 		$messages = getUserPosts($_GET["theirflow"]);
+		$user_info = getUserInfo($_GET["theirflow"]);
 
 		// header("Location: ?page=theirflow&theirflow={$_GET["thierflow"]}");	
 	}

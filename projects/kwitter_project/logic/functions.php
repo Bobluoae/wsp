@@ -25,18 +25,14 @@ function getUserPosts($user_id) {
 
 	return $query->fetchAll(PDO::FETCH_ASSOC);
 }
-function getUserInfo(){
+function getUserInfo($user_id) {
 	global $conn;
 	//All information om en användare
-	if (isset($_SESSION["user_id"])) {
-		$query = $conn->prepare("SELECT * FROM users WHERE user_id = ?");
-		$query->bindParam('1', $_SESSION["user_id"], PDO::PARAM_INT);
-		$query->execute();
+	$query = $conn->prepare("SELECT * FROM users WHERE user_id = ?");
+	$query->bindParam('1', $user_id, PDO::PARAM_INT);
+	$query->execute();
 
-		return $query->fetch(PDO::FETCH_ASSOC);
-	} else {
-		return false;
-	}
+	return $query->fetch(PDO::FETCH_ASSOC);
 }
 function getReplies($m_id) {
 	global $conn;
