@@ -54,54 +54,68 @@
 //Skicka till PHP att du vill ta bort en like på ett meddelande
 function postDeleteLike(m_id, isDislike = false, event){
 
-    const payload = {
-        unlikeId: m_id,
-    };
+  const payload = {
+      unlikeId: m_id,
+  };
 
-    requestObj = {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        redirect: 'follow', 
-        referrerPolicy: 'no-referrer',
-        body: JSON.stringify(payload)
-    }
+  requestObj = {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      redirect: 'follow', 
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(payload)
+  }
 
-    fetch('index.php?ajax=unlike_post', requestObj)
-         .then(response => response.json())
+  fetch('index.php?ajax=unlike_post', requestObj)
+   .then(response => response.json())
 
-         .then(data => {
+   .then(data => {
 
-            if(data.action == "unlike_post") {
-              
-              if (isDislike == false) {
-                const find = "m_like_" + m_id;
-                const like_span = document.getElementById(find);
-                like_span.innerHTML = Number(like_span.innerHTML) - 1;
-                event.target.style.display = "none";
-                const nextEl = event.target.previousElementSibling;
-                nextEl.style.display = "inline";
-              } else {
-                const find = "m_dislike_" + m_id;
-                const like_span = document.getElementById(find);
-                like_span.innerHTML = Number(like_span.innerHTML) - 1;
-                event.target.style.display = "none";
-                const nextEl = event.target.previousElementSibling;
-                nextEl.style.display = "inline";
+      if(data.action == "unlike_post") {
 
-              }
+        if (isDislike == false) {
 
-            }
+          const find = "m_like_" + m_id;
+          const like_span = document.getElementById(find);
 
-            console.log(data);
-        }).catch((error) => {
-            console.error('Error:', error);
-            alert("Error, cannot add like/dislike to db.");
-        });
+          like_span.innerHTML = Number(like_span.innerHTML) - 1;
+
+          event.target.style.display = "none";
+          const prevEl = event.target.previousElementSibling;
+          prevEl.style.display = "inline";
+
+          const nextEl = event.target.nextElementSibling;
+          nextEl.style.display = "inline";
+
+
+
+        } else {
+
+          const find = "m_dislike_" + m_id;
+          const dislike_span = document.getElementById(find);
+
+          dislike_span.innerHTML = Number(dislike_span.innerHTML) - 1;
+
+          event.target.style.display = "none";
+          const prevEl = event.target.previousElementSibling;
+          prevEl.style.display = "inline";
+
+          const nextEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling;
+          nextEl.style.display = "inline";
+
+        }
+      }
+
+      console.log(data);
+  }).catch((error) => {
+      console.error('Error:', error);
+      alert("Error, cannot add like/dislike to db.");
+  });
 }
 
 //Skicka till PHP att du vill ta bort en like på ett reply
@@ -144,53 +158,65 @@ function replyDeleteLike(r_id){
 //Skicka till PHP att du vill likea ett meddelande
 function postLike(m_id, isDislike = false, event){
 
-    const payload = {
-        messageId: m_id,
-        isDislike: isDislike
-    };
+  const payload = {
+      messageId: m_id,
+      isDislike: isDislike
+  };
 
-    requestObj = {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        redirect: 'follow', 
-        referrerPolicy: 'no-referrer',
-        body: JSON.stringify(payload)
+  requestObj = {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      redirect: 'follow', 
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(payload)
+  }
+
+  fetch('index.php?ajax=like_post', requestObj)
+ .then(response => response.json())
+
+ .then(data => {
+
+    if(data.action =="like_post" ) {
+
+      const find = "m_like_" + m_id;
+      const like_span = document.getElementById(find);
+
+      like_span.innerHTML = Number(like_span.innerHTML) + 1;
+
+      event.target.style.display = "none";
+      const nextEl = event.target.nextElementSibling;
+
+      const nextnextEl = nextEl.nextElementSibling;
+
+      nextEl.style.display = "inline";
+      nextnextEl.style.display = "none";
+
+    }
+    if(data.action =="dislike_post" ) {
+
+      const find = "m_dislike_" + m_id;
+      const like_span = document.getElementById(find);
+
+      like_span.innerHTML = Number(like_span.innerHTML) + 1;
+
+      event.target.style.display = "none";
+      const prevEl = event.target.previousElementSibling.previousElementSibling;
+      prevEl.style.display = "none";
+      const nextEl = event.target.nextElementSibling;
+      nextEl.style.display = "inline";
+
     }
 
-    fetch('index.php?ajax=like_post', requestObj)
-         .then(response => response.json())
-
-         .then(data => {
-
-
-            if(data.action =="like_post" ) {
-              const find = "m_like_" + m_id;
-              const like_span = document.getElementById(find);
-              like_span.innerHTML = Number(like_span.innerHTML) + 1;
-              event.target.style.display = "none";
-              const nextEl = event.target.nextElementSibling;
-              nextEl.style.display = "inline";
-            }
-            if(data.action =="dislike_post" ) {
-              const find = "m_dislike_" + m_id;
-              const like_span = document.getElementById(find);
-              like_span.innerHTML = Number(like_span.innerHTML) + 1;
-              event.target.style.display = "none";
-              const nextEl = event.target.nextElementSibling;
-              nextEl.style.display = "inline";
-
-            }
-
-            console.log(data);
-        }).catch((error) => {
-            console.error('Error:', error);
-            alert("Error, cannot add like/dislike to db.");
-        });
+    console.log(data);
+  }).catch((error) => {
+      console.error('Error:', error);
+      alert("Error, cannot add like/dislike to db.");
+  });
 }
 
 //Skicka till PHP att du vill likea ett svar/reply
