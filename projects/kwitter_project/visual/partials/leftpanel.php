@@ -2,7 +2,7 @@
 	<div class="m-1">
 		<a href="?page=postmsg"><button>Post</button></a><br><hr>
 		<a href="?page=flow"><button>Flow</button></a><br><hr>
-		<a href="?page=myflow"><button>Your Flow</button></a><br><hr>
+		<a href="?page=theirflow&theirflow=<?=$_SESSION["user_id"]?>"><button>Your Flow</button></a><br><hr>
 		<a href="?page=login"><button>Your account</button></a><br><hr>
 	</div>
 </div>

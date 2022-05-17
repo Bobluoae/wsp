@@ -31,17 +31,27 @@
 				</h1>
 				<h2>Hello, <?=$_SESSION["username"]?>!</h2>
 				<br>
-				<form method="POST" onsubmit="">
+				<form method="POST" onsubmit="submit.disabled = true; return true;">
 					<input type="hidden" name="delete_user_skickat">
-					<input type="submit" name="delete_user" value="Delete your account">
+					<input type="submit" name="delete_user" value="Delete your account" class="btn btn-danger btn-lg m-3" style="float: left;">
 				</form>
-				<br>
-				<form method="POST">
+				<br><br><br>
+				<form method="POST" onsubmit="submit.disabled = true; return true;">
+					<label class="badge badge-info m-2" style="float: left;">Your description</label><br>
+					<input type="hidden" name="bio_skickat">
+					<?php 
+						$user_info = getUserInfo($_SESSION["user_id"]);
+					 ?>
+					<textarea class="form-control m-3" style="max-width: 300px;" rows="5" name="textarea" placeholder="Type your bio here!" required><?=$user_info["bio"]?></textarea>
+					<input type="submit" name="submit" value="Update your bio!" class="btn btn-info btn-lg m-3" style="float: left;">
+				</form>
+				<br><br><br>
+				<form method="POST" onsubmit="submit.disabled = true; return true;">
 					<input type="hidden" name="utlogg_skickat">
-					<input type="submit" name="logga_ut" value="Logga ut">
+					<input type="submit" name="logga_ut" value="Sign out" class="btn btn-light btn-lg m-3" style="float: left;">
 				</form>
-				<br>
-				<a class="badge badge-info" href="?page=flow">Back to Kwitter!</a>
+				<br><br><br>
+				<a href="?page=flow"><button class="btn btn-light btn-lg m-3" style="float: left;">Back to Kwitter!</button></a>
 			<?php } ?>
 		</div>
 		<div class="col-3">

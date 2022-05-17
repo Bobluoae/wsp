@@ -63,10 +63,7 @@ if (isset($_SESSION["user_id"])) {
 	if($_GET["page"] == "flow"){
 		$messages = getMessages();
 	}
-	//Hämta data för alla dina inlägg
-	if($_GET["page"] == "myflow"){
-		$messages = getUserPosts($_SESSION["user_id"]);
-	}
+
 	//Hämta data för en användares inlägg
 	if ($_GET["theirflow"] && $_GET["page"] == "theirflow") {
 		$messages = getUserPosts($_GET["theirflow"]);
@@ -109,5 +106,21 @@ if (isset($_SESSION["user_id"])) {
 
 		//Förhindra återsendning av delete med header
 		header("Location: ?page=reply&reply={$_GET["reply"]}");
+	}
+
+	if (isset($_POST["bio_skickat"])) {
+
+		$bio = $_POST["textarea"];
+		$user_id = $_SESSION["user_id"];
+
+		//HTML entities blir borttagna för att förhindra injections
+		$bio = htmlentities($bio);
+
+		$query = $conn->prepare("UPDATE users SET bio = ? WHERE user_id = ?");
+		$query->bindParam('1', $bio, PDO::PARAM_STR);
+		$query->bindParam('2', $user_id, PDO::PARAM_INT);
+		$query->execute();
+
+		header('Location: ?page=theirflow&theirflow=' . $_SESSION["user_id"]);
 	}
 }
