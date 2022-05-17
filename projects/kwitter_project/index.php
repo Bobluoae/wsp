@@ -46,6 +46,9 @@ if ($_GET["page"] == "postmsg") {
 if ($_GET["page"] == "reply") {
 	include "visual/pages/reply.php";
 }
+if ($_GET["page"] == "information") {
+	include "visual/pages/information.php";
+}
 if ($_GET["page"] == "admin" && $_SESSION["usertype"] == "admin") {
 	include "visual/pages/admin/admin.php";
 }
