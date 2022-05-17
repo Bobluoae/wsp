@@ -22,7 +22,7 @@ if (isset($_SESSION["user_id"])) {
 		<textarea class="form-control" rows="5" name="textarea" required></textarea>
 	<!-- Submit knapp separat från textboxen -->
 	<div class="border m-1">
-		<input type="submit" name="submit" onclick="this.form.submit();this.disabled = true;" value="Post Your Kwitt!"/>
+		<input type="submit" name="submit" onclick="this.form.submit(); this.disabled = true;" value="Post Your Kwitt!"/>
 	</form>	
 	</div>
 </div>

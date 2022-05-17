@@ -21,7 +21,7 @@ if (isset($_SESSION["isLoggedIn"])): ?>
 
 				<!-- Submit knapp separat från textboxen -->
 				<div class="border m-1">
-					<input type="submit" name="submit" onclick="this.form.submit();this.disabled = true;" value="Reply to this Kwitt!">
+					<input type="submit" name="submit" onclick="this.form.submit(); this.disabled = true;" value="Reply to this Kwitt!">
 				</div>
 			</form>	
 			</div>
