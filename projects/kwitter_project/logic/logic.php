@@ -110,9 +110,4 @@ if (isset($_SESSION["user_id"])) {
 		//Förhindra återsendning av delete med header
 		header("Location: ?page=reply&reply={$_GET["reply"]}");
 	}
-
-
-
-
-
 }

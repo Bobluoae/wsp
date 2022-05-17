@@ -31,6 +31,16 @@ if(isset($_POST["inlogg_skickat"])){
 		$error = true;
 	}
 }
+if (isset($_POST["delete_user_skickat"])) {
+
+	$del = $_SESSION["user_id"]; 
+	
+	$query = $conn->prepare("DELETE FROM users WHERE user_id = ?");
+	$query->bindParam('1', $del, PDO::PARAM_INT);
+	$query->execute();
+
+	$_POST['utlogg_skickat'] = true;
+}
 //Användaren loggar ut
 if (isset($_POST["utlogg_skickat"])) {
 

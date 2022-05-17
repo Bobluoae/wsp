@@ -30,10 +30,17 @@
 					You are signed in!
 				</h1>
 				<h2>Hello, <?=$_SESSION["username"]?>!</h2>
+				<br>
+				<form method="POST" onsubmit="">
+					<input type="hidden" name="delete_user_skickat">
+					<input type="submit" name="delete_user" value="Delete your account">
+				</form>
+				<br>
 				<form method="POST">
 					<input type="hidden" name="utlogg_skickat">
 					<input type="submit" name="logga_ut" value="Logga ut">
 				</form>
+				<br>
 				<a class="badge badge-info" href="?page=flow">Back to Kwitter!</a>
 			<?php } ?>
 		</div>
