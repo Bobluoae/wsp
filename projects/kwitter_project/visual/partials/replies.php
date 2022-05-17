@@ -36,19 +36,40 @@
 		<?php }
 		echo 'Likes: <span id="r_like_'.$reply["r_id"].'">' . $likes . '</span> | Dislikes: <span id="r_dislike_'.$reply["r_id"].'">' . $dislikes . '</span>';
 		 ?>
-		  <!-- Knappar för Like samt Dislike och ta bort like/dislike -->
 
-		 <?php if (isReplyLiked($reply["r_id"]) == 1): ?>
-		 	<button class="r_unlike" value="<?=$reply["r_id"]?>">Remove like</button>
-		 <?php else: ?>
-		 	<button class="r_like" value="<?=$reply["r_id"]?>">Like</button>
-		 <?php endif ?>
 
-		  <?php if (isReplyLiked($reply["r_id"]) == -1): ?>
-		 	<button class="r_unlike" value="<?=$reply["r_id"]?>">Remove dislike</button>
-		 <?php else: ?>
-		 	<button class="r_dislike" value="<?=$reply["r_id"]?>">Dislike</button>
-		 <?php endif ?>
+		 		 <!-- Knappar för Like och ta bort like -->
+		<button 
+			style="display: <?php echo isReplyLiked($reply["r_id"]) == 1 || isReplyLiked($reply["r_id"]) == -1 ? "none" : "inline" ?>;"
+			class="r_like"
+			value="<?=$reply["r_id"]?>">
+			Like
+		</button>
+
+		<button 
+			style="display: <?php echo isReplyLiked($reply["r_id"]) == 1 ? "inline" : "none" ?>;" 
+			class="r_unlike_like" 
+			value="<?=$reply["r_id"]?>">
+			Remove like
+		</button>
+		
+
+		
+		<!-- Knappar för Dislike och ta bort dislike -->
+		<button 
+			style="display: <?php echo isReplyLiked($reply["r_id"]) == -1 || isReplyLiked($reply["r_id"]) == 1 ? "none" : "inline" ?>;"
+			class="r_dislike" 
+			value="<?=$reply["r_id"]?>">
+			Dislike
+		</button>
+	
+		<button 
+			style="display: <?php echo isReplyLiked($reply["r_id"]) == -1 ? "inline" : "none" ?>;"
+			class="r_unlike_dislike" 
+			value="<?=$reply["r_id"]?>">
+			Remove dislike
+		</button>
+
 
 	</div>
 </div>

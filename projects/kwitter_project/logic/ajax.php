@@ -99,6 +99,14 @@ if ($_GET["ajax"] == "unlike_reply") {
 
 	//Skicka en respons till webbläsaren
 	header("Content-Type: application/json");
-	echo json_encode(["action" => "unlike_reply", "unlike_reply" => $payload->r_unlikeId]);
+
+	if ($query->rowCount()) {
+		echo json_encode(["action" => "unlike_reply", "unlike_reply" => $payload->r_unlikeId]);
+	}
+	else {
+		echo json_encode("no_change");
+	}
+
+	
 	exit();
 }
