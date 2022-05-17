@@ -24,7 +24,7 @@ if (isset($_SESSION["user_id"])) {
 		//HTML entities blir borttagna för att förhindra injections
 		htmlentities($text);
 
-		$query = $conn->prepare("INSERT INTO chat_log SET message = ?, user_id = ?");
+		$query = $conn->prepare("INSERT INTO chat_log SET message = ?, user_id = ?, m_created_at = NOW()");
 		$query->bindParam('1', $text, PDO::PARAM_STR);
 		$query->bindParam('2', $id, PDO::PARAM_INT);
 		$query->execute();
@@ -43,7 +43,7 @@ if (isset($_SESSION["user_id"])) {
 		//HTML entities blir borttagna för att förhindra injections
 		htmlentities($rep);
 
-		$query = $conn->prepare("INSERT INTO replies SET reply = ?, m_id = ?, user_id = ?");
+		$query = $conn->prepare("INSERT INTO replies SET reply = ?, m_id = ?, user_id = ?, r_created_at = NOW()");
 		$query->bindParam('1', $rep, PDO::PARAM_STR);
 		$query->bindParam('2', $m_id, PDO::PARAM_INT);
 		$query->bindParam('3', $user_id, PDO::PARAM_INT);

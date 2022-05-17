@@ -10,8 +10,8 @@
 	</div>
 
 	<!-- Utskrift av meddelande -->
-	<?=htmlentities($reply["reply"]);?>
-
+	<?=htmlentities($reply["reply"]);?> <br>
+	<span class="m-2" style="font-size: 10px;">Created at: <?=$reply["r_created_at"]?></span>
 	<!-- Ruta för like, dislike och like-dislike ratio och replies -->
 	<div class="border m-1">
 

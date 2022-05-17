@@ -44,7 +44,7 @@ if(isset($_POST["reg_skickat"])){
 		$password = sha1($_POST['password']);
 		$usertype = "user";
 
-		$query = $conn->prepare("INSERT INTO users SET username = ?, password = ?, usertype = ?");
+		$query = $conn->prepare("INSERT INTO users SET username = ?, password = ?, usertype = ?, created_at = NOW()");
 		$query->bindParam('1', $name, PDO::PARAM_STR);
 		$query->bindParam('2', $password, PDO::PARAM_STR);
 		$query->bindParam('3', $usertype, PDO::PARAM_STR);

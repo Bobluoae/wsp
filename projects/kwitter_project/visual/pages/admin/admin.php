@@ -13,6 +13,7 @@
 				<th>USERNAME</th>
 				<th>PASSWORD</th>
 				<th>USERTYPE</th>
+				<th>CREATED</th>
 				<th>DEL</th>
 				<th>EDIT</th>
 			</tr>
@@ -29,6 +30,7 @@
 				echo "<td>" . $row["username"] . "</td>";
 				echo "<td>" . $row["password"] . "</td>";
 				echo "<td>" . $row["usertype"] . "</td>";
+				echo "<td>" . $row["created_at"] . "</td>";
 				echo '<td><a href="?page=admin&deleteuser=' . $row["user_id"] . '">🗑️</a></td>';
 				echo '<td><a href="?page=update&updateuser=' . $row["user_id"] . '">🖊️</a></td>';
 				echo "</tr>";

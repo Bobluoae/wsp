@@ -7,14 +7,14 @@ $error = false;
 include "logic/reg.php";
 include "logic/log.php";
 
+//Logik
+include "logic/functions.php";
+include "logic/logic.php";
+
 //Logik bara för administratörer
 if (isset($_SESSION["usertype"]) && $_SESSION["usertype"] == "admin") {
 	include "logic/admin/adminlogic.php";
 }
-
-//Logik
-include "logic/functions.php";
-include "logic/logic.php";
 
 if (isset($_GET["ajax"])){
 	include "logic/ajax.php";
