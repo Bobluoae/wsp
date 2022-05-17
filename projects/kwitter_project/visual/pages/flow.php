@@ -14,6 +14,7 @@ if (isset($_SESSION["isLoggedIn"])): ?>
             include "visual/partials/message.php";
           }
    			 ?>
+         <button onclick="load()" id="load">Load more (WIP)</button>
    		</div>
     </div>
 

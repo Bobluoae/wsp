@@ -110,3 +110,20 @@ if ($_GET["ajax"] == "unlike_reply") {
 	
 	exit();
 }
+
+if ($_GET["ajax"] == "loadMessages") {
+	
+	$num + $payload->load;
+	getMessages($num);
+
+	//Skicka en respons till webbläsaren
+	header("Content-Type: application/json");
+
+	if ($query->rowCount()) {
+		echo json_encode(["action" => "load", "load" => $payload->load]);
+	}
+	else {
+		echo json_encode("no_change");
+	}
+	exit();
+}

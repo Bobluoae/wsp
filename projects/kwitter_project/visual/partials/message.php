@@ -10,7 +10,7 @@
 	</div>
 
 	<!-- Utskrift av meddelande -->
-	<?=$message["message"];?>
+	<?=htmlentities($message["message"]);?>
 
 	<!-- Ruta för like, dislike och like-dislike ratio och replies -->
 	<div class="border m-1">

@@ -317,4 +317,37 @@ function replyLike(r_id, isDislike = false, event){
         });
 }
 
+const loadbutton = document.getElementById("load");
+
+function load(event){
+
+  const payload = {
+    load: 10
+  };
+
+  requestObj = {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      redirect: 'follow', 
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(payload)
+  }
+  fetch('index.php?ajax=loadMessages', requestObj)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+}
+
+
+
 </script>
