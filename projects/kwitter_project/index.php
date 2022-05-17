@@ -8,7 +8,7 @@ include "logic/reg.php";
 include "logic/log.php";
 
 //Logik bara för administratörer
-if ($_SESSION["usertype"] == "admin") {
+if (isset($_SESSION["usertype"]) && $_SESSION["usertype"] == "admin") {
 	include "logic/admin/adminlogic.php";
 }
 

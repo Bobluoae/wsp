@@ -1,5 +1,5 @@
 <?php 
-if ($_SESSION["usertype"] == "admin" && $_GET["page"] == "admin") {
+if (isset($_SESSION["usertype"]) && $_SESSION["usertype"] == "admin" && $_GET["page"] == "admin") {
 	
 	if (isset($_GET["deleteuser"])) {
 
@@ -12,7 +12,7 @@ if ($_SESSION["usertype"] == "admin" && $_GET["page"] == "admin") {
 		$_GET["page"] = "admin";
 	}
 }
-if ($_SESSION["usertype"] == "admin") {
+if (isset($_SESSION["usertype"]) && $_SESSION["usertype"] == "admin") {
 
 	if (isset($_GET["updateuser"])) {
 
