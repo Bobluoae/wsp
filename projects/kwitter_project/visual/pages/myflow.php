@@ -33,5 +33,5 @@ if (isset($_SESSION["isLoggedIn"])): ?>
   </div>
 </div>
 
-<?php include "js/likefunctions.js";
+<?php include "js/like_functions.js";
 endif ?>
