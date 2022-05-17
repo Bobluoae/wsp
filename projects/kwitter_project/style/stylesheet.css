@@ -70,11 +70,13 @@ body {
   display: flex;
   justify-content: center;
 }
+
 #tablebox{
-  background: darkmagenta;
+  background-color: white;
+  max-width: 500px;
   margin: auto;
   font-size: 20px;
-  color: white;
+  color: black;
 
 }
 

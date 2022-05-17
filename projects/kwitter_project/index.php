@@ -9,6 +9,10 @@ $error = false;
 include "logic/reg.php";
 include "logic/log.php";
 
+if ($_SESSION["usertype"] == "admin") {
+	include "logic/admin/adminlogic.php";
+}
+
 //Logik
 include "logic/functions.php";
 include "logic/logic.php";
@@ -43,5 +47,12 @@ if ($_GET["page"] == "postmsg") {
 if ($_GET["page"] == "reply") {
 	include "visual/pages/reply.php";
 }
+if ($_GET["page"] == "admin" && $_SESSION["usertype"] == "admin") {
+	include "visual/pages/admin/admin.php";
+}
+if ($_GET["page"] == "update" && $_SESSION["usertype"] == "admin") {
+	include "visual/pages/admin/updateform.php";
+}
+
 //Alltid synlig footer
 include "visual/footer.php";
