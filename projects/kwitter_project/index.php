@@ -2,13 +2,12 @@
 include "db/dbconn.php";
 session_start();
 
-
-
 //Login
 $error = false;
 include "logic/reg.php";
 include "logic/log.php";
 
+//Logik bara för administratörer
 if ($_SESSION["usertype"] == "admin") {
 	include "logic/admin/adminlogic.php";
 }
