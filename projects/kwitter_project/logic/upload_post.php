@@ -1,4 +1,4 @@
-<?php 
+<?php
 //Kolla om användaren är inloggad
 if (isset($_SESSION["user_id"])) {
 
@@ -17,12 +17,12 @@ if (isset($_SESSION["user_id"])) {
 	</div>
 
 	<!-- formulär för inlägg -->
-	<form method="post" action="" class="">
+	<form method="post" action="" onsubmit="submit.disabled = true; return true;">
 		<input type="hidden" name="upload_skickat"> <!-- Skickar en parameter till php -->
 		<textarea class="form-control" rows="5" name="textarea" required></textarea>
 	<!-- Submit knapp separat från textboxen -->
 	<div class="border m-1">
-		<input type="submit" name="submit" onclick="this.form.submit(); this.disabled = true;" value="Post Your Kwitt!"/>
+		<input type="submit" name="submit" value="Post Your Kwitt!"/>
 	</form>	
 	</div>
 </div>
