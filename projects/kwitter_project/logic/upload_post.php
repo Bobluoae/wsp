@@ -19,15 +19,10 @@ if (isset($_SESSION["user_id"])) {
 	<!-- formulär för inlägg -->
 	<form method="post" action="" class="">
 		<input type="hidden" name="upload_skickat"> <!-- Skickar en parameter till php -->
-		<textarea class="form-control" rows="5" name="textarea"></textarea>
-		<?php 
-			if (isset($_POST["textarea"])) {
-				htmlentities($_POST["textarea"]);
-			}
-		?>
+		<textarea class="form-control" rows="5" name="textarea" required></textarea>
 	<!-- Submit knapp separat från textboxen -->
 	<div class="border m-1">
-		<input type="submit" name="submit" value="Post Your Kwitt!">
+		<input type="submit" name="submit" onclick="this.form.submit();this.disabled = true;" value="Post Your Kwitt!"/>
 	</form>	
 	</div>
 </div>

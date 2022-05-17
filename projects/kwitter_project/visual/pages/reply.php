@@ -17,11 +17,11 @@ if (isset($_SESSION["isLoggedIn"])): ?>
 			<!-- formulär för reply -->
 			<form method="post" action="" class="">
 				<input type="hidden" name="reply_skickat"> <!-- Skickar en parameter till php -->
-				<textarea class="form-control" rows="5" name="textarea"></textarea>
+				<textarea class="form-control" rows="5" name="textarea" required></textarea>
 
 				<!-- Submit knapp separat från textboxen -->
 				<div class="border m-1">
-					<input type="submit" name="submit" value="Reply to this Kwitt!">
+					<input type="submit" name="submit" onclick="this.form.submit();this.disabled = true;" value="Reply to this Kwitt!">
 				</div>
 			</form>	
 			</div>
