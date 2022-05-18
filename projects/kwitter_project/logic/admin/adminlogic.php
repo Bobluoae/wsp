@@ -32,6 +32,8 @@ if (isset($_SESSION["usertype"]) && $_SESSION["usertype"] == "admin") {
 		$usertype = $_POST["usertype"];
 		$id = $_POST["user_id"];
 
+		$name = htmlentities($name);
+
 		$query = $conn->prepare("UPDATE users SET username = ?, password = ?, usertype = ? WHERE user_id = ?");
 		$query->bindParam('1', $name, PDO::PARAM_STR);
 		$query->bindParam('2', $password, PDO::PARAM_STR);
