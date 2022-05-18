@@ -14,6 +14,9 @@ if (isset($_SESSION["isLoggedIn"])): ?>
    			 <!-- Rutan på ett inlägg -->
 			<div class="border m-1 p-2">
 
+			<?php if (isset($err)): ?>
+			<strong style="color: red; background-color: black; border-radius: 3px;"><?=$err?></strong>
+			<?php endif ?>
 			<!-- formulär för reply -->
 			<form method="post" action="" onsubmit="submit.disabled = true; return true;">
 				<input type="hidden" name="reply_skickat"> <!-- Skickar en parameter till php -->

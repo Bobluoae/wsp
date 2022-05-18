@@ -3,6 +3,11 @@
 
 	<!-- Rutan på namn och användartyp -->
 	<div class="border m-1 p-1" id="name">
+		<?php if ($reply["usertype"] == "admin"): ?>
+			<span style="float: left">🚨</span>
+		<?php else: ?>
+			<span style="float: left">🧍‍</span>
+		<?php endif ?>
 		<a class="badge badge-info" href="?page=theirflow&theirflow=<?=$reply["user_id"]?>"><?=$reply["username"]?> | <?=$reply["usertype"]?></a>
 		<?php if ($_SESSION["user_id"] == $reply["user_id"] || $_SESSION["usertype"] == "admin"): ?>
 			<a class="text-align-right" href="?deletereply=<?=$reply["r_id"]?>&reply=<?=$_GET["reply"]?>">🗑️</a>

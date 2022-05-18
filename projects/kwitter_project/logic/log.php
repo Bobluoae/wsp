@@ -49,4 +49,5 @@ if (isset($_POST["utlogg_skickat"])) {
 	unset($_SESSION["usertype"]);
 	unset($_SESSION["user_id"]);
 	unset($_SESSION["username"]);
+	unset($_SESSION["time"]);
 }
