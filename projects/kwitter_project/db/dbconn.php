@@ -2,7 +2,7 @@
 
 //Databas connection
 
-$servername = "localhost";
+$servername = "127.0.0.1";
 $username = "root";
 $password = "HemData531";
 $database = "kwitter";
