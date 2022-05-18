@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-12">
 			<nav>
-				<a href="?page=update"><button class="btn btn-light btn-lg m-3">Update Users</button></a>
+				<a href="?page=admin"><button class="btn btn-light btn-lg m-3">Update Users</button></a>
 			</nav>
 		</div>
 
