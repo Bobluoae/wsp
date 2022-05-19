@@ -9,22 +9,22 @@ if (isset($_SESSION["user_id"])) {
 
  ?>
  <!-- Rutan på ett inlägg -->
-<div class="border m-1 p-2">
+<div class="border-main m-1 p-2">
 
 	<!-- Rutan på namn och användartyp -->
-	<div class="border m-1 p-1">
+	<div class="border-name m-1 p-1">
 		<?=$results["username"]?> | <?=$results["usertype"]?>
 	</div>
 	<!-- formulär för inlägg -->
 	<?php if (isset($err)): ?>
 	<strong style="color: red; background-color: black; border-radius: 3px;"><?=$err?></strong>
 	<?php endif ?>
-	
+
 	<form method="post" action="" onsubmit="submit.disabled = true; return true;">
 		<input type="hidden" name="upload_skickat"> <!-- Skickar en parameter till php -->
 		<textarea class="form-control" rows="5" name="textarea" required></textarea>
 	<!-- Submit knapp separat från textboxen -->
-	<div class="border m-1">
+	<div class="border-information m-1">
 		<input type="submit" name="submit" value="Post Your Kwitt!"/>
 	</form>	
 	</div>

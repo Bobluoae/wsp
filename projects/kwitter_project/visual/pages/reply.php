@@ -6,7 +6,7 @@ if (isset($_SESSION["isLoggedIn"])): ?>
     <?php include "visual/partials/leftpanel.php"; ?>
 
     <!-- Mittenpanel med huvudinnehåll -->
-    <div class="col-8 border-main col-md-8">
+    <div class="col-8 border-main main col-md-8">
    		<div class="m-1 p-4">
    			<?php
             	include "visual/partials/message.php";

@@ -1,8 +1,20 @@
 <div class="col-2 border-main col-md-2">
-	<div class="m-1">
-		<a href="?page=postmsg"><button>Post</button></a><br><hr>
-		<a href="?page=flow"><button>Flow</button></a><br><hr>
-		<a href="?page=theirflow&theirflow=<?=$_SESSION["user_id"]?>"><button>Your Flow</button></a><br><hr>
-		<a href="?page=login"><button>Your account</button></a><br><hr>
-	</div>
+		<ul>
+			<li>
+				<a href="?page=postmsg"><button class="btn btn-light btn-lg m-3 p-2">Post</button></a>
+			</li>
+			<hr>
+			<li>
+				<a href="?page=flow"><button class="btn btn-light btn-lg m-3 p-2">Flow</button></a>
+			</li>
+			<hr>
+			<li>
+				<a href="?page=theirflow&theirflow=<?=$_SESSION["user_id"]?>"><button class="btn btn-light btn-lg m-3 p-2">Your Flow</button></a>
+			</li>
+			<hr>
+			<li>
+				<a href="?page=login"><button class="btn btn-light btn-lg m-3 p-2">Your account</button></a>
+			</li>
+			<hr>
+		</ul>
 </div>

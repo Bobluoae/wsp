@@ -24,7 +24,9 @@
 
 .bg{
   /*background-color: #7d8ac7;*/
-  background: radial-gradient(circle, rgba(0,0,20,0.5) 0%, rgba(0, 80, 200, 0.4) 100%)!important;
+/*  background: radial-gradient(circle, rgba(0,0,20,0.5) 0%, rgba(0, 80, 200, 0.4) 100%)!important;*/
+background: rgb(0,80,200);
+background: linear-gradient(90deg, rgba(100,120,200) 0%, rgba(0,50,230, 0.3) 20%, rgba(0,50,230, 0.3) 80%, rgba(100,120,200) 100%);
 }
 
 /* Custom default button */
@@ -196,5 +198,13 @@ td a {
   border-radius: 10px;
 }
 .main {
-  background-color: rgb(0, 0, 0, 0.15);
+  background-color: rgb(0, 0, 0, 0.13);
 }
+ul, li{
+  list-style-type: none;
+  
+}
+ul {
+    list-style: none;
+    padding: 0!important;
+}​
