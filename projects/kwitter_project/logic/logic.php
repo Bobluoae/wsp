@@ -41,6 +41,7 @@ if (isset($_SESSION["user_id"])) {
 
 			//Skickar webbläsaren till flow sidan utan återbekräftelse av formuläret.
 			header("Location: ?page=flow");
+			exit();
 		} else {
 			$err = "You have to wait at least 10 seconds before sending another message!";
 		}
@@ -71,6 +72,7 @@ if (isset($_SESSION["user_id"])) {
 
 		//Gå till det specifika inlägget du befinner dig på för att inte få återbekräftelse av formuläret.
 		header("Location: ?page=reply&reply={$_GET["reply"]}");
+		exit();
 		} else {
 			$err = "You have to wait at least 10 seconds before sending another reply!";
 		}
@@ -98,22 +100,33 @@ if (isset($_SESSION["user_id"])) {
 	//Delete funktionalitet bara för användaren som postade meddelandet
 	if (isset($_GET["delete"])) {
 
-		//Först måste du ta bort alla replies sedan kan du deleta meddelandet (Kan göras i DB med en typ av cascading key(svårt at förklara))
+		$msg = getOneMessage($_GET["delete"]);
 
-		$del = intval($_GET["delete"]);
-		$delu = intval($_SESSION["user_id"]);
+		//Kontrollera att man får radera
+		if ($_SESSION["usertype"] == "admin" || $_SESSION["user_id"] == $msg["user_id"]) {
 
-		$query = $conn->prepare("DELETE FROM replies WHERE m_id = ?");
-		$query->bindParam('1', $del, PDO::PARAM_INT);
-		$query->execute();
 
-		$query = $conn->prepare("DELETE FROM chat_log WHERE m_id = ? AND user_id = ?");
-		$query->bindParam('1', $del, PDO::PARAM_INT);
-		$query->bindParam('2', $delu, PDO::PARAM_INT);
-		$query->execute();
 
-		//Förhindra återsendning av delete med header
-		header("Location: ?page=flow");
+			//Först måste du ta bort alla replies sedan kan du deleta meddelandet (Kan göras i DB med en typ av cascading key(svårt at förklara))
+
+			$del = intval($_GET["delete"]);
+			
+
+			try {
+
+				$query = $conn->prepare("DELETE FROM chat_log WHERE m_id = ?");
+				$query->bindParam('1', $del, PDO::PARAM_INT);
+				$query->execute();
+
+			} catch(\Exception $e) {
+			    var_dump($e);
+			}
+
+
+				//Förhindra återsendning av delete med header
+				header("Location: ?page=flow");
+				exit();
+		}
 	}
 
 	//Delete funktionalitet bara för användaren som postade reply
@@ -129,6 +142,7 @@ if (isset($_SESSION["user_id"])) {
 
 		//Förhindra återsendning av delete med header
 		header("Location: ?page=reply&reply={$_GET["reply"]}");
+		exit();
 	}
 
 	if (isset($_POST["bio_skickat"])) {
@@ -145,5 +159,6 @@ if (isset($_SESSION["user_id"])) {
 		$query->execute();
 
 		header('Location: ?page=theirflow&theirflow=' . $_SESSION["user_id"]);
+		exit();
 	}
 }
