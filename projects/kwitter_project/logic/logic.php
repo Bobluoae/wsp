@@ -105,44 +105,43 @@ if (isset($_SESSION["user_id"])) {
 		//Kontrollera att man får radera
 		if ($_SESSION["usertype"] == "admin" || $_SESSION["user_id"] == $msg["user_id"]) {
 
-
-
 			//Först måste du ta bort alla replies sedan kan du deleta meddelandet (Kan göras i DB med en typ av cascading key(svårt at förklara))
-
 			$del = intval($_GET["delete"]);
-			
 
-			try {
+			$query = $conn->prepare("DELETE FROM chat_log WHERE m_id = ?");
+			$query->bindParam('1', $del, PDO::PARAM_INT);
+			$query->execute();
 
-				$query = $conn->prepare("DELETE FROM chat_log WHERE m_id = ?");
-				$query->bindParam('1', $del, PDO::PARAM_INT);
-				$query->execute();
-
-			} catch(\Exception $e) {
-			    var_dump($e);
-			}
-
-
-				//Förhindra återsendning av delete med header
-				header("Location: ?page=flow");
-				exit();
+			//Förhindra återsendning av delete med header
+			header("Location: ?page=flow");
+			exit();
 		}
 	}
 
 	//Delete funktionalitet bara för användaren som postade reply
 	if (isset($_GET["deletereply"])) {
 
-		$del = intval($_GET["deletereply"]);
-		$delu = intval($_SESSION["user_id"]);
+		$r_id = $_GET["deletereply"];
 
-		$query = $conn->prepare("DELETE FROM replies WHERE r_id = ? AND user_id = ?");
-		$query->bindParam('1', $del, PDO::PARAM_INT);
-		$query->bindParam('2', $delu, PDO::PARAM_INT);
+		$query = $conn->prepare("SELECT user_id FROM replies WHERE r_id = ?");
+		$query->bindParam('1', $r_id, PDO::PARAM_INT);
 		$query->execute();
+		$rep = $query->fetch(PDO::FETCH_ASSOC);
 
-		//Förhindra återsendning av delete med header
-		header("Location: ?page=reply&reply={$_GET["reply"]}");
-		exit();
+		//Kontrollera att man får radera
+		if ($_SESSION["usertype"] == "admin" || $_SESSION["user_id"] == $rep["user_id"]) {
+
+			$del = intval($_GET["deletereply"]);
+			
+
+			$query = $conn->prepare("DELETE FROM replies WHERE r_id = ?");
+			$query->bindParam('1', $del, PDO::PARAM_INT);
+			$query->execute();
+
+			//Förhindra återsendning av delete med header
+			header("Location: ?page=reply&reply={$_GET["reply"]}");
+			exit();
+		}
 	}
 
 	if (isset($_POST["bio_skickat"])) {
