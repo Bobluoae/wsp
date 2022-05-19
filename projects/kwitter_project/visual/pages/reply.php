@@ -1,18 +1,18 @@
 <?php //Användaren kan bara se replies om de är inloggade
 if (isset($_SESSION["isLoggedIn"])): ?>
 <div class="container bg">
-  <div class="row align-items-start border">
+  <div class="row align-items-start">
     <!-- inkludera sidopanel -->
     <?php include "visual/partials/leftpanel.php"; ?>
 
     <!-- Mittenpanel med huvudinnehåll -->
-    <div class="col-8 border col-md-8">
+    <div class="col-8 border-main col-md-8">
    		<div class="m-1 p-4">
    			<?php
             	include "visual/partials/message.php";
    			 ?>
    			 <!-- Rutan på ett inlägg -->
-			<div class="border m-1 p-2">
+			<div class="border-name m-1 p-2">
 
 			<?php if (isset($err)): ?>
 			<strong style="color: red; background-color: black; border-radius: 3px;"><?=$err?></strong>
@@ -23,7 +23,7 @@ if (isset($_SESSION["isLoggedIn"])): ?>
 				<textarea class="form-control" rows="5" name="textarea" required></textarea>
 
 				<!-- Submit knapp separat från textboxen -->
-				<div class="border m-1">
+				<div class="border-information m-1">
 					<input type="submit" name="submit" value="Reply to this Kwitt!">
 				</div>
 			</form>	

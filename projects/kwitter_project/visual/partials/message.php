@@ -1,8 +1,8 @@
 <!-- Rutan på ett inlägg -->
-<div class="border m-1 p-2 mb-5">
+<div class="border-main m-1 p-2 mb-5">
 
 	<!-- Rutan på namn och användartyp -->
-	<div class="border m-1 p-1" id="name">
+	<div class="border-name m-1 p-1" id="name">
 
 		<?php if ($message["usertype"] == "admin"): ?>
 			<span style="float: left">🚨</span>
@@ -21,7 +21,7 @@
 	<span class="" style="font-size: 10px;">Created at: <?=$message["m_created_at"]?></span>
 
 	<!-- Ruta för like, dislike och like-dislike ratio och replies -->
-	<div class="border m-1">
+	<div class="border-information m-1">
 
 		<!-- Kalkylerar Like-Dislike Ratio -->
 		<?php
@@ -38,7 +38,7 @@
 		 ?>
 		<!-- Utskrift av ratio pie-chart samt knappar för like, dislike och reply -->
 		Ratio: 
-		<div class="pie animate no-round" style="--p:<?php echo $result; ?>;--c:green;">
+		<div class="pie animate no-round" style="--p:<?php echo $result; ?>;--c:limegreen;">
 			<?php echo '<span style="font-size: 15px">'. $result .'%</span>';?>
 		</div>
 		<?php }

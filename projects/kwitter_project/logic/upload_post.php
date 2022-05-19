@@ -19,6 +19,7 @@ if (isset($_SESSION["user_id"])) {
 	<?php if (isset($err)): ?>
 	<strong style="color: red; background-color: black; border-radius: 3px;"><?=$err?></strong>
 	<?php endif ?>
+	
 	<form method="post" action="" onsubmit="submit.disabled = true; return true;">
 		<input type="hidden" name="upload_skickat"> <!-- Skickar en parameter till php -->
 		<textarea class="form-control" rows="5" name="textarea" required></textarea>
