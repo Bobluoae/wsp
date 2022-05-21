@@ -24,7 +24,7 @@ if (isset($_SESSION["isLoggedIn"])): ?>
 
 				<!-- Submit knapp separat från textboxen -->
 				<div class="border-information m-1">
-					<input type="submit" name="submit" value="Reply to this Kwitt!">
+					<input type="submit" name="submit" value="Reply to this Kwitt!" class="btn btn-light btn-lg m-1">
 				</div>
 			</form>	
 			</div>

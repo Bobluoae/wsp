@@ -25,7 +25,7 @@ if (isset($_SESSION["user_id"])) {
 		<textarea class="form-control" rows="5" name="textarea" required></textarea>
 	<!-- Submit knapp separat från textboxen -->
 	<div class="border-information m-1">
-		<input type="submit" name="submit" value="Post Your Kwitt!"/>
+		<input type="submit" name="submit" value="Post Your Kwitt!" class="btn btn-light btn-lg m-1">
 	</form>	
 	</div>
 </div>
