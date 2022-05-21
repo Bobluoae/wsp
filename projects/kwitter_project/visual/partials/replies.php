@@ -39,21 +39,21 @@
 			<?php echo '<span style="font-size: 15px">'. $result .'%</span>';?>
 		</div>
 		<?php }
-		echo 'Likes: <span id="r_like_'.$reply["r_id"].'">' . $likes . '</span> | Dislikes: <span id="r_dislike_'.$reply["r_id"].'">' . $dislikes . '</span>';
+		echo '👍 <span id="r_like_'.$reply["r_id"].'">' . $likes . '</span> | 👎 <span id="r_dislike_'.$reply["r_id"].'">' . $dislikes . '</span>';
 		 ?>
 
 
 		 		 <!-- Knappar för Like och ta bort like -->
 		<button 
 			style="display: <?php echo isReplyLiked($reply["r_id"]) == 1 || isReplyLiked($reply["r_id"]) == -1 ? "none" : "inline" ?>;"
-			class="r_like"
+			class="r_like btn btn-light btn-sm"
 			value="<?=$reply["r_id"]?>">
 			Like
 		</button>
 
 		<button 
 			style="display: <?php echo isReplyLiked($reply["r_id"]) == 1 ? "inline" : "none" ?>;" 
-			class="r_unlike_like" 
+			class="r_unlike_like btn btn-danger btn-sm" 
 			value="<?=$reply["r_id"]?>">
 			Remove like
 		</button>
@@ -63,14 +63,14 @@
 		<!-- Knappar för Dislike och ta bort dislike -->
 		<button 
 			style="display: <?php echo isReplyLiked($reply["r_id"]) == -1 || isReplyLiked($reply["r_id"]) == 1 ? "none" : "inline" ?>;"
-			class="r_dislike" 
+			class="r_dislike btn btn-light btn-sm" 
 			value="<?=$reply["r_id"]?>">
 			Dislike
 		</button>
 	
 		<button 
 			style="display: <?php echo isReplyLiked($reply["r_id"]) == -1 ? "inline" : "none" ?>;"
-			class="r_unlike_dislike" 
+			class="r_unlike_dislike btn btn-danger btn-sm" 
 			value="<?=$reply["r_id"]?>">
 			Remove dislike
 		</button>
