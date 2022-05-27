@@ -35,6 +35,20 @@ if (isset($_SESSION["isLoggedIn"])): ?>
 				}
 				 
 			?>
+		<?php if ($_GET["pagenum"] > 1): ?>
+          <a class="btn btn-info" href="?page=reply&reply=<?=$_GET["reply"]?>&pagenum=1">First</a>
+          <a class="btn btn-info" href="?page=reply&reply=<?=$_GET["reply"]?>&pagenum=<?=$_GET["pagenum"] - 1?>">Back</a>
+        <?php endif ?>
+
+        <?php $page = countReplies($_GET["reply"]) / PERPAGE?>
+        <?="Page: " . $_GET["pagenum"] . " / " . ceil($page)?>
+
+        <?php if ((countReplies($_GET["reply"]) / PERPAGE) > $_GET["pagenum"]): ?>
+          <a class="btn btn-info" href="?page=reply&reply=<?=$_GET["reply"]?>&pagenum=<?=$_GET["pagenum"] + 1?>">Next</a>
+		<?php $last = countReplies($_GET["reply"]) / PERPAGE ?>
+          <a class="btn btn-info" href="?page=reply&reply=<?=$_GET["reply"]?>&pagenum=<?=ceil($last)?>">Last</a>
+        <?php endif ?>
+
 
 		</div>
 	</div>
@@ -43,6 +57,4 @@ if (isset($_SESSION["isLoggedIn"])): ?>
     <?php include "visual/partials/rightpanel.php"; ?>
   </div>
 </div>
-<?php 
-include "js/like_functions.js";
-endif ?>
+<?php endif ?>

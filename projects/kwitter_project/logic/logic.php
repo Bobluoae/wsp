@@ -18,6 +18,9 @@ if (!isset($_GET["page"])) {
 if (!isset($_SESSION["usertype"])) {
 	$_SESSION["usertype"] = "";
 }
+if (!isset($_GET["pagenum"])) {
+	$_GET["pagenum"] = 1;
+}
 //Kan bara ske om man är inloggad
 if (isset($_SESSION["user_id"])) {
 
@@ -83,7 +86,7 @@ if (isset($_SESSION["user_id"])) {
 			//Gå till det specifika inlägget du befinner dig på för att inte få återbekräftelse av formuläret.
 			header("Location: ?page=reply&reply={$_GET["reply"]}");
 			exit();
-			} else {
+			} else {//Error message definition
 				$err = "You have to wait at least 10 seconds before sending another reply!";
 			}
 		} else {
@@ -93,18 +96,30 @@ if (isset($_SESSION["user_id"])) {
 
 	//Hämta data från ett specifikt inlägg och alla svar på det inlägget
 	if($_GET["page"] == "reply"){
+
+		//Skicka in offset till databas select för sidonumrering
+		$offset = $_GET["pagenum"] * PERPAGE - PERPAGE;
+
 		$message = getOneMessage($_GET["reply"]);
-		$replies = getReplies($_GET["reply"]);
+		$replies = getReplies($_GET["reply"], $offset);
 	}
 
 	//Hämta data för alla inlägg
 	if($_GET["page"] == "flow"){
-		$messages = getMessages();
+
+		//Skicka in offset till databas select för sidonumrering
+		$offset = $_GET["pagenum"] * PERPAGE - PERPAGE;
+
+		$messages = getMessages($offset);
 	}
 
 	//Hämta data för en användares inlägg
 	if ($_GET["theirflow"] && $_GET["page"] == "theirflow") {
-		$messages = getUserPosts($_GET["theirflow"]);
+
+		//Skicka in offset till databas select för sidonumrering
+		$offset = $_GET["pagenum"] * PERPAGE - PERPAGE;
+
+		$messages = getUserPosts($_GET["theirflow"], $offset);
 		$user_info = getUserInfo($_GET["theirflow"]);
 
 		// header("Location: ?page=theirflow&theirflow={$_GET["thierflow"]}");	

@@ -1,5 +1,3 @@
-<script type="text/javascript">
-
 // Loopa igenom alla knappar från htmlen som har klasser och hämta datat som knapparna har om man klickar för att kunna skicka med AJAX till PHP , se Index $_GET["Ajax"];
 
   const r_likebuttons = document.querySelectorAll(".r_like");
@@ -316,38 +314,3 @@ function replyLike(r_id, isDislike = false, event){
             alert("Error, cannot add like/dislike to db.");
         });
 }
-
-const loadbutton = document.getElementById("load");
-
-function load(event){
-
-  const payload = {
-    load: 10
-  };
-
-  requestObj = {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      redirect: 'follow', 
-      referrerPolicy: 'no-referrer',
-      body: JSON.stringify(payload)
-  }
-  fetch('index.php?ajax=loadMessages', requestObj)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-}
-
-
-
-
-</script>

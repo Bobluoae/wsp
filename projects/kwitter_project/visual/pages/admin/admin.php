@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-12">
 			<nav> <!-- just refreshes page to fetch users table again -->
-				<a href="?page=admin"><button class="btn btn-light btn-lg m-3">Update Users</button></a>
+				<a class="btn btn-light btn-lg m-3" href="?page=admin">Update Users</a>
 			</nav>
 		</div>
 

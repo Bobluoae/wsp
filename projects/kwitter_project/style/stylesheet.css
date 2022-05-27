@@ -212,3 +212,14 @@ ul {
   min-width: 500px; 
   min-height: 900px;
 }
+
+.btn{
+  text-shadow: none;
+}
+
+a:hover {
+  color: lightgray!important;
+}
+a:hover.btn {
+  color: #59595C!important;
+}

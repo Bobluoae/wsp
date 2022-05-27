@@ -2,6 +2,9 @@
 include "db/dbconn.php";
 session_start();
 
+//Global constant variabel för offset och pagenummer
+define("PERPAGE", 10);
+
 //Login
 $error = false;
 include "logic/reg.php";

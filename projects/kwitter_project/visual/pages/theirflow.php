@@ -16,13 +16,24 @@ if (isset($_SESSION["isLoggedIn"])): ?>
             include "visual/partials/message.php";
           }
    			 ?>
+
+        <?php if ($_GET["pagenum"] > 1): ?>
+          <a class="btn btn-info" href="?page=theirflow&theirflow=<?=$_GET["theirflow"]?>&pagenum=1">First</a>
+          <a class="btn btn-info" href="?page=theirflow&theirflow=<?=$_GET["theirflow"]?>&pagenum=<?=$_GET["pagenum"] - 1?>">Back</a>
+        <?php endif ?>
+
+        <?php $page = countTheirMessages($_GET["theirflow"]) / PERPAGE?>
+        <?="Page: " . $_GET["pagenum"] . " / " . ceil($page)?>
+
+        <?php if ((countTheirMessages($_GET["theirflow"]) / PERPAGE) > $_GET["pagenum"]): ?>
+          <a class="btn btn-info" href="?page=theirflow&theirflow=<?=$_GET["theirflow"]?>&pagenum=<?=$_GET["pagenum"] + 1?>">Next</a>
+          <?php $last = countTheirMessages($_GET["theirflow"]) / PERPAGE ?>
+          <a class="btn btn-info" href="?page=theirflow&theirflow=<?=$_GET["theirflow"]?>&pagenum=<?=ceil($last)?>">Last</a>
+        <?php endif ?>
    		</div>
     </div>
-
     <!-- inkludera högerpanel -->
     <?php include "visual/partials/rightpanel.php"; ?>
   </div>
 </div>
-<?php 
-include "js/like_functions.js";
-endif ?>
+<?php endif ?>

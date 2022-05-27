@@ -1,9 +1,9 @@
 <?php 
 //Få alla meddelanden på hemsidan.
-function getMessages(/*$num = 10*/) {
+function getMessages($offset = 0) {
 	global $conn;
 	//Hämta alla meddelanden, alla nyaste meddelanden blir först på listan
-	$query = $conn->prepare("SELECT * FROM chat_log, users WHERE chat_log.user_id = users.user_id ORDER BY m_id DESC"/* LIMIT " . $num*/);
+	$query = $conn->prepare("SELECT * FROM chat_log, users WHERE chat_log.user_id = users.user_id ORDER BY m_id DESC LIMIT " . PERPAGE . " OFFSET " . $offset);
 	$query->execute();
 
 	return $query->fetchAll(PDO::FETCH_ASSOC);
@@ -21,10 +21,10 @@ function getOneMessage($id) {
 }
 
 //Hämta alla meddelanden från en specifik användare
-function getUserPosts($user_id) {
+function getUserPosts($user_id, $offset = 0) {
 	global $conn;
 	//Hämta alla meddelanden av en användare
-	$query = $conn->prepare("SELECT * FROM chat_log, users WHERE chat_log.user_id = users.user_id AND chat_log.user_id = ? ORDER BY m_id DESC");
+	$query = $conn->prepare("SELECT * FROM chat_log, users WHERE chat_log.user_id = users.user_id AND chat_log.user_id = ? ORDER BY m_id DESC LIMIT " . PERPAGE . " OFFSET " . $offset);
 	$query->bindParam('1', $user_id, PDO::PARAM_INT);
 	$query->execute();
 
@@ -43,10 +43,10 @@ function getUserInfo($user_id) {
 }
 
 //Hämta alla svar på ett specifikt meddelande
-function getReplies($m_id) {
+function getReplies($m_id, $offset = 0) {
 	global $conn;
 	//Hämta alla replies, alla nyaste replies blir först på listan
-	$query = $conn->prepare("SELECT * FROM replies, users WHERE m_id = ? AND replies.user_id = users.user_id ORDER BY r_id DESC");
+	$query = $conn->prepare("SELECT * FROM replies, users WHERE m_id = ? AND replies.user_id = users.user_id ORDER BY r_id DESC LIMIT " . PERPAGE . " OFFSET " . $offset);
 	$query->bindParam('1', $m_id, PDO::PARAM_INT);
 	$query->execute();
 
@@ -142,4 +142,29 @@ function countReplies($m_id){
 	//Räkna alla replies
 	$count = $query->fetchAll(PDO::FETCH_ASSOC);
 	return count($count);
+}
+
+//Räkna alla meddelanden i tabellen chat_log
+function countMessages(){
+	global $conn;
+	
+	$query = $conn->prepare("SELECT COUNT(*) FROM chat_log");
+	$query->execute();
+
+	//Räkna alla messages
+	return $query->fetchColumn(0);
+
+}
+
+//Räkna alla meddelanden i tabellen chat_log
+function countTheirMessages($user_id){
+	global $conn;
+	
+	$query = $conn->prepare("SELECT COUNT(*) FROM chat_log WHERE user_id = ?");
+	$query->bindParam('1', $user_id, PDO::PARAM_INT);
+	$query->execute();
+
+	//Räkna alla messages
+	return $query->fetchColumn(0);
+
 }

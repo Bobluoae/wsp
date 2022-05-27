@@ -65,7 +65,7 @@
 				<br><br><br>
 
 				<!-- länk tillbaka till kwitter -->
-				<a href="?page=flow"><button class="btn btn-light btn-lg m-3" style="float: left;">Back to Kwitter!</button></a>
+				<a class="btn btn-light btn-lg m-3" style="float: left;" href="?page=flow">Back to Kwitter!</a>
 			<?php } ?>
 			</div>
 			<div class="col-3">

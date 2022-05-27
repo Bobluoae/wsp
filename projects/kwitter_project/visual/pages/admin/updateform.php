@@ -2,7 +2,7 @@
 <!-- form for updating a users username, password or usertype -->
 <?php if ($_SESSION["usertype"] == "admin"): ?>
 <div>
-	<a href="?page=admin"><button class="btn btn-light btn-lg m-3">Back to admin</button></a>
+	<a class="btn btn-light btn-lg m-3" href="?page=admin">Back to admin</a>
 	<h1>UPDATE USERS</h1>
 	<form method="POST" action="?page=admin">
 		<input type="hidden" name="update_skickat">

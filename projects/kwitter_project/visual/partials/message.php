@@ -83,7 +83,7 @@
    
 		 <!-- Reply knapp ska bara synas på flow / myflow / theirflow -->
 		<?php if ($_GET["page"] !== "reply"): ?>
-			<a href="?page=reply&reply=<?=$message["m_id"]?>"><button class="btn btn-light btn-sm">Reply</button></a>
+			<a class="btn btn-light btn-sm" href="?page=reply&reply=<?=$message["m_id"]?>">Reply</a>
 		<?php endif ?>
 		Replies: <?php $count = countReplies($message["m_id"]); 
 		echo $count;
