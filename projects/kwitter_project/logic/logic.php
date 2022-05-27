@@ -3,6 +3,9 @@
 if (!isset($_SESSION["time"])) {
 	$_SESSION["time"] = time();
 }
+if (!isset($_SESSION["timem"])) {
+	$_SESSION["timem"] = time();
+}
 if (!isset($_GET["reply"])) {
 	$_GET["reply"] = false;
 }
@@ -29,17 +32,17 @@ if (isset($_SESSION["user_id"])) {
 
 		if (strlen($text) <= 1000) { //number of characters less than 1000
 			
-			$time = time() - $_SESSION["time"];
+			$timem = time() - $_SESSION["timem"];
 
-			if ($time > 10) {
+			if ($timem > 10) {
 
 				$query = $conn->prepare("INSERT INTO chat_log SET message = ?, user_id = ?, m_created_at = NOW()");
 				$query->bindParam('1', $text, PDO::PARAM_STR);
 				$query->bindParam('2', $id, PDO::PARAM_INT);
 				$query->execute();
 
-				$time = 0;
-				unset($_SESSION["time"]);
+				$timem = 0;
+				unset($_SESSION["timem"]);
 
 				//Skickar webbläsaren till flow sidan utan återbekräftelse av formuläret.
 				header("Location: ?page=flow");
@@ -64,9 +67,9 @@ if (isset($_SESSION["user_id"])) {
 
 		if (strlen($rep) <= 1000) { //number of characters less than 1000
 
-			$time = time() - $_SESSION["time"];
+			$timer = time() - $_SESSION["time"];
 
-			if ($time > 10) {
+			if ($timer > 10) {
 
 				$query = $conn->prepare("INSERT INTO replies SET reply = ?, m_id = ?, user_id = ?, r_created_at = NOW()");
 				$query->bindParam('1', $rep, PDO::PARAM_STR);
@@ -74,7 +77,7 @@ if (isset($_SESSION["user_id"])) {
 				$query->bindParam('3', $user_id, PDO::PARAM_INT);
 				$query->execute();
 
-				$time = 0;
+				$timer = 0;
 				unset($_SESSION["time"]);
 
 			//Gå till det specifika inlägget du befinner dig på för att inte få återbekräftelse av formuläret.
