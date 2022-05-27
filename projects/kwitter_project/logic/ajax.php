@@ -103,27 +103,6 @@ if ($_GET["ajax"] == "unlike_reply") {
 	else { //Skicka en respons till webbläsaren
 		echo json_encode("no_change");
 	}
-
 	
-	exit();
-}
-
-
-
-// TESTING
-if ($_GET["ajax"] == "loadMessages") {
-	
-	$num + $payload->load;
-	getMessages($num);
-
-	//Skicka en respons till webbläsaren
-	header("Content-Type: application/json");
-
-	if ($query->rowCount()) { //Skicka en respons till webbläsaren
-		echo json_encode(["action" => "load", "load" => $payload->load]);
-	}
-	else { //Skicka en respons till webbläsaren
-		echo json_encode("no_change");
-	}
 	exit();
 }
