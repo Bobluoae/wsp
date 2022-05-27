@@ -27,23 +27,28 @@ if (isset($_SESSION["user_id"])) {
 		//HTML entities blir borttagna för att förhindra injections
 		htmlentities($text);
 
-		$time = time() - $_SESSION["time"];
+		if (strlen($text) <= 1000) { //number of characters less than 1000
+			
+			$time = time() - $_SESSION["time"];
 
-		if ($time > 10) {
+			if ($time > 10) {
 
-			$query = $conn->prepare("INSERT INTO chat_log SET message = ?, user_id = ?, m_created_at = NOW()");
-			$query->bindParam('1', $text, PDO::PARAM_STR);
-			$query->bindParam('2', $id, PDO::PARAM_INT);
-			$query->execute();
+				$query = $conn->prepare("INSERT INTO chat_log SET message = ?, user_id = ?, m_created_at = NOW()");
+				$query->bindParam('1', $text, PDO::PARAM_STR);
+				$query->bindParam('2', $id, PDO::PARAM_INT);
+				$query->execute();
 
-			$time = 0;
-			unset($_SESSION["time"]);
+				$time = 0;
+				unset($_SESSION["time"]);
 
-			//Skickar webbläsaren till flow sidan utan återbekräftelse av formuläret.
-			header("Location: ?page=flow");
-			exit();
+				//Skickar webbläsaren till flow sidan utan återbekräftelse av formuläret.
+				header("Location: ?page=flow");
+				exit();
+			} else {
+				$err = "You have to wait at least 10 seconds before sending another message!";
+			}
 		} else {
-			$err = "You have to wait at least 10 seconds before sending another message!";
+			$err = "You're not allowed to write over 1000 characters.";
 		}
 	}
 
@@ -57,24 +62,29 @@ if (isset($_SESSION["user_id"])) {
 		//HTML entities blir borttagna för att förhindra injections
 		htmlentities($rep);
 
-		$time = time() - $_SESSION["time"];
+		if (strlen($rep) <= 1000) { //number of characters less than 1000
 
-		if ($time > 10) {
+			$time = time() - $_SESSION["time"];
 
-			$query = $conn->prepare("INSERT INTO replies SET reply = ?, m_id = ?, user_id = ?, r_created_at = NOW()");
-			$query->bindParam('1', $rep, PDO::PARAM_STR);
-			$query->bindParam('2', $m_id, PDO::PARAM_INT);
-			$query->bindParam('3', $user_id, PDO::PARAM_INT);
-			$query->execute();
+			if ($time > 10) {
 
-			$time = 0;
-			unset($_SESSION["time"]);
+				$query = $conn->prepare("INSERT INTO replies SET reply = ?, m_id = ?, user_id = ?, r_created_at = NOW()");
+				$query->bindParam('1', $rep, PDO::PARAM_STR);
+				$query->bindParam('2', $m_id, PDO::PARAM_INT);
+				$query->bindParam('3', $user_id, PDO::PARAM_INT);
+				$query->execute();
 
-		//Gå till det specifika inlägget du befinner dig på för att inte få återbekräftelse av formuläret.
-		header("Location: ?page=reply&reply={$_GET["reply"]}");
-		exit();
+				$time = 0;
+				unset($_SESSION["time"]);
+
+			//Gå till det specifika inlägget du befinner dig på för att inte få återbekräftelse av formuläret.
+			header("Location: ?page=reply&reply={$_GET["reply"]}");
+			exit();
+			} else {
+				$err = "You have to wait at least 10 seconds before sending another reply!";
+			}
 		} else {
-			$err = "You have to wait at least 10 seconds before sending another reply!";
+			$err = "You're not allowed to write over 1000 characters.";
 		}
 	}
 
@@ -152,12 +162,17 @@ if (isset($_SESSION["user_id"])) {
 		//HTML entities blir borttagna för att förhindra injections
 		$bio = htmlentities($bio);
 
-		$query = $conn->prepare("UPDATE users SET bio = ? WHERE user_id = ?");
-		$query->bindParam('1', $bio, PDO::PARAM_STR);
-		$query->bindParam('2', $user_id, PDO::PARAM_INT);
-		$query->execute();
+		if (strlen($bio) <= 1000) { //number of characters less than 1000
 
-		header('Location: ?page=theirflow&theirflow=' . $_SESSION["user_id"]);
-		exit();
+			$query = $conn->prepare("UPDATE users SET bio = ? WHERE user_id = ?");
+			$query->bindParam('1', $bio, PDO::PARAM_STR);
+			$query->bindParam('2', $user_id, PDO::PARAM_INT);
+			$query->execute();
+
+			header('Location: ?page=theirflow&theirflow=' . $_SESSION["user_id"]);
+			exit();
+		} else {
+			$err = "You're not allowed to write over 1000 characters.";
+		}
 	}
 }

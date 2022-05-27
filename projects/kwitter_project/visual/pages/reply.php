@@ -20,7 +20,7 @@ if (isset($_SESSION["isLoggedIn"])): ?>
 			<!-- formulär för reply -->
 			<form method="post" action="" onsubmit="submit.disabled = true; return true;">
 				<input type="hidden" name="reply_skickat"> <!-- Skickar en parameter till php -->
-				<textarea class="form-control" rows="5" name="textarea" required></textarea>
+				<textarea class="form-control" rows="5" name="textarea" required><?php if(isset($rep)){echo $rep;}?></textarea>
 
 				<!-- Submit knapp separat från textboxen -->
 				<div class="border-information m-1">

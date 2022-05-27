@@ -17,7 +17,9 @@
 	</div>
 
 	<!-- Utskrift av meddelande -->
-	<?=htmlentities($message["message"]);?> <br>
+	<div style="word-wrap: break-word;">
+		<?=htmlentities($message["message"]);?> 
+	</div>
 	<span class="" style="font-size: 10px;">Created at: <?=$message["m_created_at"]?></span>
 
 	<!-- Ruta för like, dislike och like-dislike ratio och replies -->

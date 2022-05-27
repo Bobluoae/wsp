@@ -15,7 +15,9 @@
 	</div>
 
 	<!-- Utskrift av meddelande -->
-	<?=htmlentities($reply["reply"]);?> <br>
+	<div style="word-wrap: break-word;">
+		<?=htmlentities($reply["reply"]);?> <br>
+	</div>
 	<span class="m-2" style="font-size: 10px;">Created at: <?=$reply["r_created_at"]?></span>
 	<!-- Ruta för like, dislike och like-dislike ratio och replies -->
 	<div class="border-information m-1">

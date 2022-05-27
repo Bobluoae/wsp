@@ -1,3 +1,5 @@
+<!-- only admins can see this page -->
+<!-- form for updating a users username, password or usertype -->
 <?php if ($_SESSION["usertype"] == "admin"): ?>
 <div>
 	<a href="?page=admin"><button class="btn btn-light btn-lg m-3">Back to admin</button></a>

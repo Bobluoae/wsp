@@ -345,7 +345,6 @@ function load(event){
   .catch((error) => {
     console.error('Error:', error);
   });
-
 }
 
 

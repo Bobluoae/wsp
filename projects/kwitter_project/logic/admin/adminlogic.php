@@ -1,6 +1,8 @@
 <?php 
+//Only do logic if the user is an admin and is on the right page
 if (isset($_SESSION["usertype"]) && $_SESSION["usertype"] == "admin" && $_GET["page"] == "admin") {
 	
+	//Deleting a user from the admin table
 	if (isset($_GET["deleteuser"])) {
 
 		$del = intval($_GET["deleteuser"]);
@@ -14,6 +16,7 @@ if (isset($_SESSION["usertype"]) && $_SESSION["usertype"] == "admin" && $_GET["p
 }
 if (isset($_SESSION["usertype"]) && $_SESSION["usertype"] == "admin") {
 
+	//Admin wants to uppdate some information about a user (username, password and usertype)
 	if (isset($_GET["updateuser"])) {
 
 		$id = intval($_GET["updateuser"]);
@@ -25,6 +28,7 @@ if (isset($_SESSION["usertype"]) && $_SESSION["usertype"] == "admin") {
 		$_POST = $query->fetch(PDO::FETCH_ASSOC);
 	}
 
+	//Admin has uppdated some information about a user (username, password and usertype)
 	if (isset($_POST["update_skickat"])) {
 
 		$name = $_POST["username"];

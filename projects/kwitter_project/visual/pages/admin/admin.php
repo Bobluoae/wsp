@@ -1,12 +1,14 @@
-<?php if ($_SESSION["usertype"] == "admin"): ?>
+<!-- only admin can see this page -->
+<?php if ($_SESSION["usertype"] == "admin"): ?> 
 <div class="center container" style="display: flex;">
 	<div class="row">
 		<div class="col-12">
-			<nav>
+			<nav> <!-- just refreshes page to fetch users table again -->
 				<a href="?page=admin"><button class="btn btn-light btn-lg m-3">Update Users</button></a>
 			</nav>
 		</div>
 
+		<!-- table for users and admins -->
 		<table class="table" id="tablebox">
 			<tr>
 				<th>ID</th>
@@ -19,11 +21,10 @@
 			</tr>
 			<?php
 
-			// $query = mysqli_query($conn, "SELECT * FROM friends ORDER BY id DESC");
-
 			$query = $conn->prepare("SELECT * FROM users ORDER BY user_id DESC");
 			$query->execute();
 
+			//Print table with the corresponding information
 			while($row = $query->fetch(PDO::FETCH_ASSOC)) {
 				echo "<tr>";
 				echo "<td>" . $row["user_id"] . "</td>";

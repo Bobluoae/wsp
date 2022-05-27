@@ -208,3 +208,7 @@ ul {
     list-style: none;
     padding: 0!important;
 }​
+.infobox {
+  min-width: 500px; 
+  min-height: 900px;
+}

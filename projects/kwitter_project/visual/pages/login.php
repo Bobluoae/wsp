@@ -41,13 +41,18 @@
 				<br><br><br>
 
 				<!-- uppdatera din beskrivning -->
+
+				<?php if (isset($err)): ?>
+					<strong style="color: red; background-color: black; border-radius: 3px;"><?=$err?></strong>
+				<?php endif ?>
+
 				<form method="POST" onsubmit="submit.disabled = true; return true;">
 					<label class="badge badge-info m-2" style="float: left; font-size: 22px!important;">Your description</label><br>
 					<input type="hidden" name="bio_skickat">
 					<?php 
 						$user_info = getUserInfo($_SESSION["user_id"]);
 					 ?>
-					<textarea class="form-control m-3" style="max-width: 300px; border: solid black 3px;" rows="5" name="textarea" placeholder="Type your bio here!" required><?=$user_info["bio"]?></textarea>
+					<textarea class="form-control m-3" style="max-width: 300px; border: solid black 3px;" rows="5" name="textarea" placeholder="Type your bio here!" required><?php if(isset($bio)){echo $bio;}else{echo $user_info["bio"];}?></textarea>
 					<input type="submit" name="submit" value="Update your bio!" class="btn btn-info btn-lg m-3" style="float: left;">
 				</form>
 				<br><br><br>

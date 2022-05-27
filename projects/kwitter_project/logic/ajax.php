@@ -18,15 +18,15 @@ if ($_GET["ajax"] == "like_post") {
 	header("Content-Type: application/json");
 	
 	if ($query->rowCount()) {
-		if ($payload->isDislike == true){
+		if ($payload->isDislike == true){ //Skicka en respons till webbläsaren
 			echo json_encode(["action" => "dislike_post", "dislike_post" => $payload->messageId]);
-		} else {
+		} else { //Skicka en respons till webbläsaren
 			echo json_encode(["action" => "like_post", "like_post" => $payload->messageId]);
 		}
-	} else {
+	} else { //Skicka en respons till webbläsaren
 		echo json_encode("no_change");
 	}
-	//Skicka en respons till webbläsaren
+	
 	
 	exit();
 }
@@ -49,15 +49,14 @@ if ($_GET["ajax"] == "like_reply") {
 	header("Content-Type: application/json");
 	
 	if ($query->rowCount()) {
-		if ($payload->isDislike == true){
+		if ($payload->isDislike == true){ //Skicka en respons till webbläsaren
 			echo json_encode(["action" => "dislike_reply", "dislike_reply" => $payload->replyId]);
-		} else {
+		} else {  //Skicka en respons till webbläsaren
 			echo json_encode(["action" => "like_reply", "like_reply" => $payload->replyId]);
 		}
-	} else {
+	} else {//Skicka en respons till webbläsaren
 		echo json_encode("no_change");
 	}
-	//Skicka en respons till webbläsaren
 	
 	exit();
 }
@@ -73,13 +72,12 @@ if ($_GET["ajax"] == "unlike_post") {
 	$query->bindParam('2', $_SESSION["user_id"], PDO::PARAM_INT);
 	$query->execute();
 
-	//Skicka en respons till webbläsaren
 	header("Content-Type: application/json");
 
-	if ($query->rowCount()) {
-		echo json_encode(["action" => "unlike_post", "unlike_post" => $payload->unlikeId]);
+	if ($query->rowCount()) { //Skicka en respons till webbläsaren
+		echo json_encode(["action" => "unlike_post", "unlike_post" => $payload->unlikeId]); 
 	}
-	else {
+	else { //Skicka en respons till webbläsaren
 		echo json_encode("no_change");
 	}
 
@@ -97,13 +95,12 @@ if ($_GET["ajax"] == "unlike_reply") {
 	$query->bindParam('2', $_SESSION["user_id"], PDO::PARAM_INT);
 	$query->execute();
 
-	//Skicka en respons till webbläsaren
 	header("Content-Type: application/json");
 
-	if ($query->rowCount()) {
+	if ($query->rowCount()) { //Skicka en respons till webbläsaren
 		echo json_encode(["action" => "unlike_reply", "unlike_reply" => $payload->r_unlikeId]);
 	}
-	else {
+	else { //Skicka en respons till webbläsaren
 		echo json_encode("no_change");
 	}
 
@@ -111,6 +108,9 @@ if ($_GET["ajax"] == "unlike_reply") {
 	exit();
 }
 
+
+
+// TESTING
 if ($_GET["ajax"] == "loadMessages") {
 	
 	$num + $payload->load;
@@ -119,10 +119,10 @@ if ($_GET["ajax"] == "loadMessages") {
 	//Skicka en respons till webbläsaren
 	header("Content-Type: application/json");
 
-	if ($query->rowCount()) {
+	if ($query->rowCount()) { //Skicka en respons till webbläsaren
 		echo json_encode(["action" => "load", "load" => $payload->load]);
 	}
-	else {
+	else { //Skicka en respons till webbläsaren
 		echo json_encode("no_change");
 	}
 	exit();
