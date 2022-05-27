@@ -7,22 +7,22 @@ if (isset($_SESSION["isLoggedIn"])): ?>
 
     <!-- Mittenpanel med huvudinnehåll -->
     <div class="col-8 border-main main">
-   		<div class="m-1 p-4">
+   		<div id="messages" class="m-1 p-4">
    			<?php
         //Loopa genom alla meddelanden i DB
+          $i = 0;
    				foreach ($messages as $message) {
             include "visual/partials/message.php";
+            $i++;
           }
    			 ?>
-         <button onclick="load()" id="load">Load more (WIP)</button>
    		</div>
+      <button onclick="load()">Load more (WIP)</button>
+      <input type="hidden" name="offset" id="offset" value="<?=$i?>">
     </div>
 
     <!-- inkludera högerpanel -->
     <?php include "visual/partials/rightpanel.php"; ?>
   </div>
 </div>
-
-<?php 
-include "js/like_functions.js";
-endif ?>
+<?php endif ?>

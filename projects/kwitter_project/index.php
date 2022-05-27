@@ -2,6 +2,8 @@
 include "db/dbconn.php";
 session_start();
 
+define("PERPAGE", 3);
+
 //Login
 $error = false;
 include "logic/reg.php";

@@ -1,4 +1,4 @@
-<script type="text/javascript">
+
 
 // Loopa igenom alla knappar från htmlen som har klasser och hämta datat som knapparna har om man klickar för att kunna skicka med AJAX till PHP , se Index $_GET["Ajax"];
 
@@ -317,12 +317,12 @@ function replyLike(r_id, isDislike = false, event){
         });
 }
 
-const loadbutton = document.getElementById("load");
+function load(){
 
-function load(event){
+  let i = document.getElementById("offset").value;
 
   const payload = {
-    load: 10
+    load: i
   };
 
   requestObj = {
@@ -338,16 +338,18 @@ function load(event){
       body: JSON.stringify(payload)
   }
   fetch('index.php?ajax=loadMessages', requestObj)
-  .then(response => response.json())
+  .then(response => response.text())
   .then(data => {
-    console.log(data);
+
+    const messageHolder = document.getElementById("messages");
+    messageHolder.innerHTML = messageHolder.innerHTML + data;
+
+    document.getElementById("offset").value = Number(i) + PERPAGE;
+
+    console.log(document.getElementById("offset").value);
+    
   })
   .catch((error) => {
     console.error('Error:', error);
   });
 }
-
-
-
-
-</script>

@@ -16,7 +16,7 @@ if (isset($_SESSION["usertype"]) && $_SESSION["usertype"] == "admin" && $_GET["p
 }
 if (isset($_SESSION["usertype"]) && $_SESSION["usertype"] == "admin") {
 
-	//Admin wants to uppdate some information about a user (username, password and usertype)
+	//Admin wants to uppdate some information about a user (username, password and usertype), fetch the info about that user.
 	if (isset($_GET["updateuser"])) {
 
 		$id = intval($_GET["updateuser"]);

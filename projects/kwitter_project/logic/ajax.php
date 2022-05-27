@@ -112,18 +112,30 @@ if ($_GET["ajax"] == "unlike_reply") {
 
 // TESTING
 if ($_GET["ajax"] == "loadMessages") {
+
+	//Lägger datat i en payload som kan refereras till
+	$payload = json_decode(file_get_contents("php://input"));
+
+
+
+	$messages = getMessages($payload->load);
+	$i = 0;
+	foreach ($messages as $message) {
+		include "visual/partials/message.php";
+		$i++;
+	}
+	echo '<script src="js/like_functions.js" type="text/javascript"></script>';
+
+	// json_decode(getMessages($payload->load));
 	
-	$num + $payload->load;
-	getMessages($num);
+	// //Skicka en respons till webbläsaren
+	// header("Content-Type: application/json");
 
-	//Skicka en respons till webbläsaren
-	header("Content-Type: application/json");
-
-	if ($query->rowCount()) { //Skicka en respons till webbläsaren
-		echo json_encode(["action" => "load", "load" => $payload->load]);
-	}
-	else { //Skicka en respons till webbläsaren
-		echo json_encode("no_change");
-	}
+	// if ($query->rowCount()) { //Skicka en respons till webbläsaren
+	// 	echo json_encode(["action" => "load", "load" => $payload->load]);
+	// }
+	// else { //Skicka en respons till webbläsaren
+	// 	echo json_encode("no_change");
+	// }
 	exit();
 }

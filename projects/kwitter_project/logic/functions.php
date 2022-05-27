@@ -1,9 +1,9 @@
 <?php 
 //Få alla meddelanden på hemsidan.
-function getMessages(/*$num = 10*/) {
+function getMessages($offset = 0) {
 	global $conn;
 	//Hämta alla meddelanden, alla nyaste meddelanden blir först på listan
-	$query = $conn->prepare("SELECT * FROM chat_log, users WHERE chat_log.user_id = users.user_id ORDER BY m_id DESC"/* LIMIT " . $num*/);
+	$query = $conn->prepare("SELECT * FROM chat_log, users WHERE chat_log.user_id = users.user_id ORDER BY m_id DESC LIMIT " . PERPAGE . " OFFSET ". $offset);
 	$query->execute();
 
 	return $query->fetchAll(PDO::FETCH_ASSOC);
