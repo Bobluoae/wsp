@@ -21,7 +21,7 @@
 					<input type="text" name="username"><br>
 						<label>Password</label><br>
 					<input type="password" name="password"><br>
-					<input class="btn btn-light btn-lg m-3" type="submit" name="logga_in" value="Logga in"><br>
+					<input class="btn btn-light btn-lg m-3" type="submit" name="logga_in" value="Sign in"><br>
 				</form>
 				<br>
 				<a class="badge badge-info" href="?page=register">Register an account</a>
@@ -30,7 +30,7 @@
 				<h1>
 					You are signed in!
 				</h1>
-				<h2>Hello, <?=$_SESSION["username"]?>!</h2>
+				<h2 style="word-wrap: break-word;">Hello, <?=$_SESSION["username"]?>!</h2>
 				<br>
 
 				<!-- ta bort användare -->

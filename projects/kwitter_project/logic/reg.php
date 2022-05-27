@@ -12,6 +12,11 @@ if(isset($_POST["reg_skickat"])){
 	
 	$name = htmlentities($nam);
 
+	if (strlen($name) > 50) { //number of characters less than 50
+		$error = true;
+		$message = "You can't have more than 50 characters in your username!";
+	}
+
 	$query = $conn->prepare("SELECT * FROM users WHERE username = ?");
 	$query->bindParam('1', $name, PDO::PARAM_STR);
 	$query->execute();

@@ -13,7 +13,7 @@
 					if ($error == true) {
 						echo "<strong style = 'color: firebrick; -webkit-text-stroke:0.5px black;'>{$message}!</strong>";
 					} ?>
-					<form method="POST">
+					<form method="POST" onsubmit="submit.disabled = true; return true;">
 						<input type="hidden" name="reg_skickat">
 							<label>Username</label><br>
 						<input type="text" name="username"><br>
@@ -21,7 +21,7 @@
 						<input type="password" name="password"><br>
 							<label>Comfirm password</label><br>
 						<input type="password" name="confirm_password"><br>
-						<input type="submit" name="register" value="Registrera"><br>
+						<input type="submit" name="register" class="btn btn-success btn-lg m-3" value="Register"><br>
 					</form>
 					<br><a class="badge badge-info" href="?page=login">Go to Sign in</a>
 				<?php } else { ?>
