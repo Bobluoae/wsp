@@ -10,7 +10,7 @@ if (isset($_SESSION["isLoggedIn"])): ?>
       <div class="m-1 p-4">
         <?php 
           //posta meddelande form
-          include "logic/upload_post.php";
+          include "visual/partials/upload_post.php";
          ?>
       </div>
     </div>
