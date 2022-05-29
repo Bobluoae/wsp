@@ -10,3 +10,11 @@
 </head>
 <body class="d-flex h-100 text-center text-white bg">
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column"> <!-- viktig container klass -->
+<!-- 	<div style="width: 100%; background-color: yellow; color:black">
+        DEBUG: 
+        <p class="m-0 d-block d-sm-none">XTRA SMALL</p>
+        <p class="m-0 d-none d-sm-block d-md-none">SMALL</p>
+        <p class="m-0 d-none d-md-block d-lg-none">MEDIUM</p>
+        <p class="m-0 d-none d-lg-block d-xl-none">LARGE</p>
+        <p class="m-0 d-none d-xl-block">XTRA LARGE</p>
+    </div> -->

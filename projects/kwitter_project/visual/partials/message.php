@@ -1,5 +1,5 @@
 <!-- Rutan på ett inlägg -->
-<div class="border-main m-1 p-2 mb-5">
+<div class="border-message m-1 p-2 mb-5">
 
 	<!-- Rutan på namn och användartyp -->
 	<div class="border-name m-1 p-1" id="name">
