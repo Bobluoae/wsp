@@ -244,3 +244,7 @@ a:hover.btn {
   border-bottom-right-radius: 0px 0px;
   border-right: none;
 }
+.border-infor {
+  border: solid black 4px;
+  border-radius: 10px;
+}

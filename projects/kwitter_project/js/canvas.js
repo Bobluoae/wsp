@@ -21,3 +21,10 @@ for (var j = 0; j < 1000; j++) {
 		}
 	}, 6400*j);
 }
+
+
+function merp() {
+	let mySound = new Audio('sounds/merp.wav');
+	mySound.volume = 0.3
+	mySound.play();
+}

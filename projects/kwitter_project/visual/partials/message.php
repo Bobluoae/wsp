@@ -52,14 +52,16 @@
 		<button 
 			style="display: <?php echo isMessageLiked($message["m_id"]) == 1 || isMessageLiked($message["m_id"]) == -1 ? "none" : "inline" ?>;"
 			class="like btn btn-light btn-sm"
-			value="<?=$message["m_id"]?>">
+			value="<?=$message["m_id"]?>"
+			onclick="merp();">
 			Like
 		</button>
 
 		<button 
 			style="display: <?php echo isMessageLiked($message["m_id"]) == 1 ? "inline" : "none" ?>;" 
 			class="unlike_like btn btn-danger btn-sm" 
-			value="<?=$message["m_id"]?>">
+			value="<?=$message["m_id"]?>"
+			onclick="merp();">
 			Remove like
 		</button>
 		
@@ -69,14 +71,16 @@
 		<button 
 			style="display: <?php echo isMessageLiked($message["m_id"]) == -1 || isMessageLiked($message["m_id"]) == 1 ? "none" : "inline" ?>;"
 			class="dislike btn btn-light btn-sm" 
-			value="<?=$message["m_id"]?>">
+			value="<?=$message["m_id"]?>"
+			onclick="merp();">
 			Dislike
 		</button>
 	
 		<button 
 			style="display: <?php echo isMessageLiked($message["m_id"]) == -1 ? "inline" : "none" ?>;"
 			class="unlike_dislike btn btn-danger btn-sm" 
-			value="<?=$message["m_id"]?>">
+			value="<?=$message["m_id"]?>"
+			onclick="merp();">
 			Remove dislike
 		</button>
 		

@@ -49,14 +49,16 @@
 		<button 
 			style="display: <?php echo isReplyLiked($reply["r_id"]) == 1 || isReplyLiked($reply["r_id"]) == -1 ? "none" : "inline" ?>;"
 			class="r_like btn btn-light btn-sm"
-			value="<?=$reply["r_id"]?>">
+			value="<?=$reply["r_id"]?>"
+			onclick="merp();">
 			Like
 		</button>
 
 		<button 
 			style="display: <?php echo isReplyLiked($reply["r_id"]) == 1 ? "inline" : "none" ?>;" 
 			class="r_unlike_like btn btn-danger btn-sm" 
-			value="<?=$reply["r_id"]?>">
+			value="<?=$reply["r_id"]?>"
+			onclick="merp();">
 			Remove like
 		</button>
 		
@@ -66,14 +68,16 @@
 		<button 
 			style="display: <?php echo isReplyLiked($reply["r_id"]) == -1 || isReplyLiked($reply["r_id"]) == 1 ? "none" : "inline" ?>;"
 			class="r_dislike btn btn-light btn-sm" 
-			value="<?=$reply["r_id"]?>">
+			value="<?=$reply["r_id"]?>"
+			onclick="merp();">
 			Dislike
 		</button>
 	
 		<button 
 			style="display: <?php echo isReplyLiked($reply["r_id"]) == -1 ? "inline" : "none" ?>;"
 			class="r_unlike_dislike btn btn-danger btn-sm" 
-			value="<?=$reply["r_id"]?>">
+			value="<?=$reply["r_id"]?>"
+			onclick="merp();">
 			Remove dislike
 		</button>
 
