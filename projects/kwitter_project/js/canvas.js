@@ -4,6 +4,9 @@ ctx.font = '30pt Arial Black';
 
 const logo = 'Kwitter';
 ctx.fillStyle = "#fff";
+ctx.shadowOffsetX = 4;
+ctx.shadowOffsetY = 4;
+ctx.shadowColor = "black";
 
 for (var j = 0; j < 1000; j++) {
 	
