@@ -66,3 +66,4 @@ Sedan kan du navigera till kwitter_project.test i browsern.
             upload_post.php
             userinfo.php
 ```
+Jag kommer inte sitta och förklara varje fil för sig, det tar för lång tid lol. Filnamnen är självförklarande speciellt i kontext till vilken mapp de hör hemma till. 

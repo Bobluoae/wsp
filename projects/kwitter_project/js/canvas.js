@@ -1,3 +1,4 @@
+// Logo animation
 var canvas = document.getElementById('ctx');
 var ctx = canvas.getContext('2d');
 ctx.font = '30pt Arial Black';
@@ -22,7 +23,7 @@ for (var j = 0; j < 1000; j++) {
 	}, 6400*j);
 }
 
-
+// Sound for liking and disliking
 function merp() {
 	let mySound = new Audio('sounds/merp.wav');
 	mySound.volume = 0.3
