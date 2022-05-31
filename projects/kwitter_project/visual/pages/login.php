@@ -27,6 +27,7 @@
 				<a class="badge badge-info" href="?page=register">Register an account</a>
 			<?php } else { ?>
 				<!-- När man är inloggad ser man det här -->
+				<br>
 				<h1>
 					You are signed in!
 				</h1>
