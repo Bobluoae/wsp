@@ -1,5 +1,12 @@
  <?php if ($_GET["pagenum"] == 1) { ?>
- <div class="border-information m-1 mb-4 p-4">
+ <div class="border-information mb-4" style="overflow: hidden;">
+
+		<?php if (isset($user_info['banner'])): ?>
+			<div class="mb-3" style="border-bottom: 4px solid navy; height: 200px; overflow: hidden;">
+				<a href="<?=htmlentities($user_info["banner"])?>"><img src='<?=htmlentities($user_info['banner'])?>'></a>
+			</div>
+		<?php endif ?>
+	<div class="m-4">
 	<?php
 		
 	    echo "This is ".$user_info["username"]."'s flow!";
@@ -9,5 +16,6 @@
 	    ?></div><?php
 	    echo "<br><span class='m-2' style='font-size: 10px;'>Account created at: " . $user_info["created_at"] . "</span>"; 
 	?>
+	</div>
 </div>
 <?php }

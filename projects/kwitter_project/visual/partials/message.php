@@ -18,7 +18,13 @@
 
 	<!-- Utskrift av meddelande -->
 	<div style="word-wrap: break-word;">
-		<?=htmlentities($message["message"]);?> 
+		<?=htmlentities($message["message"]);?>
+		<?php if (isset($message['image'])): ?>
+			<br>
+			<a href="<?=htmlentities($message["image"])?>"><img src='<?=htmlentities($message['image'])?>' style="max-width: 300px; max-height: 300px;"></a>
+		<?php endif ?>
+		
+
 	</div>
 	<span class="" style="font-size: 10px;">Created at: <?=$message["m_created_at"]?></span>
 

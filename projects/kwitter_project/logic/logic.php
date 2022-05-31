@@ -28,20 +28,23 @@ if (isset($_SESSION["user_id"])) {
 	if (isset($_POST["upload_skickat"])) {
 
 		$text = $_POST["textarea"];
+		$img = $_POST["img"];
 		$id = $_SESSION["user_id"];
 
 		//HTML entities blir borttagna för att förhindra injections
-		htmlentities($text);
+		$text = htmlentities($text);
+		$img = htmlentities($img);
 
-		if (strlen($text) <= 1000) { //number of characters less than 1000
+		if (strlen($text) <= 1000 && strlen($img) <= 1000) { //number of characters less than 1000
 			
 			$timem = time() - $_SESSION["timem"];
 
 			if ($timem > 10) {
 
-				$query = $conn->prepare("INSERT INTO chat_log SET message = ?, user_id = ?, m_created_at = NOW()");
+				$query = $conn->prepare("INSERT INTO chat_log SET message = ?, image = ?, user_id = ?, m_created_at = NOW()");
 				$query->bindParam('1', $text, PDO::PARAM_STR);
-				$query->bindParam('2', $id, PDO::PARAM_INT);
+				$query->bindParam('2', $img, PDO::PARAM_STR);
+				$query->bindParam('3', $id, PDO::PARAM_INT);
 				$query->execute();
 
 				$timem = 0;
@@ -62,22 +65,25 @@ if (isset($_SESSION["user_id"])) {
 	if (isset($_POST["reply_skickat"])) {
 
 		$rep = $_POST["textarea"];
+		$img = $_POST["r_img"];
 		$m_id = $_GET["reply"];
 		$user_id = $_SESSION["user_id"];
 
 		//HTML entities blir borttagna för att förhindra injections
-		htmlentities($rep);
+		$rep = htmlentities($rep);
+		$img = htmlentities($img);
 
-		if (strlen($rep) <= 1000) { //number of characters less than 1000
+		if (strlen($rep) <= 1000 && strlen($img) <= 1000) { //number of characters less than 1000
 
 			$timer = time() - $_SESSION["time"];
 
 			if ($timer > 10) {
 
-				$query = $conn->prepare("INSERT INTO replies SET reply = ?, m_id = ?, user_id = ?, r_created_at = NOW()");
+				$query = $conn->prepare("INSERT INTO replies SET reply = ?, image = ?, m_id = ?, user_id = ?, r_created_at = NOW()");
 				$query->bindParam('1', $rep, PDO::PARAM_STR);
-				$query->bindParam('2', $m_id, PDO::PARAM_INT);
-				$query->bindParam('3', $user_id, PDO::PARAM_INT);
+				$query->bindParam('2', $img, PDO::PARAM_STR);
+				$query->bindParam('3', $m_id, PDO::PARAM_INT);
+				$query->bindParam('4', $user_id, PDO::PARAM_INT);
 				$query->execute();
 
 				$timer = 0;
@@ -175,16 +181,19 @@ if (isset($_SESSION["user_id"])) {
 	if (isset($_POST["bio_skickat"])) {
 
 		$bio = $_POST["textarea"];
+		$banner = $_POST["banner"];
 		$user_id = $_SESSION["user_id"];
 
 		//HTML entities blir borttagna för att förhindra injections
 		$bio = htmlentities($bio);
+		$banner = htmlentities($banner);
 
-		if (strlen($bio) <= 1000) { //number of characters less than 1000
+		if (strlen($bio) <= 1000 && strlen($banner) <= 1000) { //number of characters less than 1000
 
-			$query = $conn->prepare("UPDATE users SET bio = ? WHERE user_id = ?");
+			$query = $conn->prepare("UPDATE users SET bio = ?, banner = ? WHERE user_id = ?");
 			$query->bindParam('1', $bio, PDO::PARAM_STR);
-			$query->bindParam('2', $user_id, PDO::PARAM_INT);
+			$query->bindParam('2', $banner, PDO::PARAM_STR);
+			$query->bindParam('3', $user_id, PDO::PARAM_INT);
 			$query->execute();
 
 			header('Location: ?page=theirflow&theirflow=' . $_SESSION["user_id"]);

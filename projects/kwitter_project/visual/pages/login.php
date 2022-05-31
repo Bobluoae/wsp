@@ -36,9 +36,9 @@
 				<!-- ta bort användare -->
 				<form method="POST" onsubmit="submit.disabled = true; return true;">
 					<input type="hidden" name="delete_user_skickat">
-					<input type="submit" name="delete_user" value="Delete your account" class="btn btn-danger btn-lg m-3" style="float: left;">
+					<input type="submit" name="delete_user" value="Delete your account" class="btn btn-danger btn-lg m-3" style="width: 80%;">
 				</form>
-				<br><br><br>
+				
 
 				<!-- uppdatera din beskrivning -->
 
@@ -52,20 +52,21 @@
 					<?php 
 						$user_info = getUserInfo($_SESSION["user_id"]);
 					 ?>
-					<textarea class="form-control m-3" style="max-width: 300px; border: solid black 3px;" rows="5" name="textarea" placeholder="Type your bio here!" required><?php if(isset($bio)){echo $bio;}else{echo $user_info["bio"];}?></textarea>
-					<input type="submit" name="submit" value="Update your bio!" class="btn btn-info btn-lg m-3" style="float: left;">
+					<textarea class="form-control m-4" style="width: 85%; border: solid black 3px;" rows="5" name="textarea" placeholder="Type your bio here!" required><?php if(isset($bio)){echo $bio;}else{echo $user_info["bio"];}?></textarea>
+					<input type="text" name="banner" class="m-3" placeholder="Image link for banner here!" style="width: 80%;">
+					<input type="submit" name="submit" value="Update your bio!" class="btn btn-info btn-lg m-3" style="width: 80%;">
 				</form>
-				<br><br><br>
+				
 
 				<!-- logga ut -->
 				<form method="POST" onsubmit="submit.disabled = true; return true;">
 					<input type="hidden" name="utlogg_skickat">
-					<input type="submit" name="logga_ut" value="Sign out" class="btn btn-light btn-lg m-3" style="float: left;">
+					<input type="submit" name="logga_ut" value="Sign out" class="btn btn-light btn-lg m-3" style="width: 80%;">
 				</form>
-				<br><br><br>
+				
 
 				<!-- länk tillbaka till kwitter -->
-				<a class="btn btn-light btn-lg m-3" style="float: left;" href="?page=flow">Back to Kwitter!</a>
+				<a class="btn btn-light btn-lg m-3" style="width: 80%;" href="?page=flow">Back to Kwitter!</a>
 			<?php } ?>
 			</div>
 			<div class="col-3">

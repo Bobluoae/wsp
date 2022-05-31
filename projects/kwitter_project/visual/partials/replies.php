@@ -1,5 +1,5 @@
 <!-- Rutan på ett inlägg -->
-<div class="border-main m-1 p-2">
+<div class="border-message m-1 p-2">
 
 	<!-- Rutan på namn och användartyp -->
 	<div class="border-name m-1 p-1" id="name">
@@ -16,7 +16,11 @@
 
 	<!-- Utskrift av meddelande -->
 	<div style="word-wrap: break-word;">
-		<?=htmlentities($reply["reply"]);?> <br>
+		<?=htmlentities($reply["reply"]);?>
+		<?php if (isset($reply['image'])): ?>
+			<br>
+			<a href="<?=htmlentities($reply["image"])?>"><img src='<?=htmlentities($reply['image'])?>' style="max-width: 300px; max-height: 300px;"></a>
+		<?php endif ?>
 	</div>
 	<span class="m-2" style="font-size: 10px;">Created at: <?=$reply["r_created_at"]?></span>
 	<!-- Ruta för like, dislike och like-dislike ratio och replies -->
