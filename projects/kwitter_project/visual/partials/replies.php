@@ -17,7 +17,7 @@
 	<!-- Utskrift av meddelande -->
 	<div style="word-wrap: break-word;">
 		<?=htmlentities($reply["reply"]);?>
-		<?php if (isset($reply['image'])): ?>
+		<?php if ($reply['image'] !== ""): ?>
 			<br>
 			<a href="<?=htmlentities($reply["image"])?>"><img src='<?=htmlentities($reply['image'])?>' style="max-width: 300px; max-height: 300px;"></a>
 		<?php endif ?>

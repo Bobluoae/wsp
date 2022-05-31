@@ -1,7 +1,7 @@
  <?php if ($_GET["pagenum"] == 1) { ?>
  <div class="border-information mb-4" style="overflow: hidden;">
 
-		<?php if (isset($user_info['banner'])): ?>
+		<?php if ($user_info['banner']): ?>
 			<div class="mb-3" style="border-bottom: 4px solid navy; height: 200px; overflow: hidden;">
 				<a href="<?=htmlentities($user_info["banner"])?>"><img src='<?=htmlentities($user_info['banner'])?>'></a>
 			</div>
