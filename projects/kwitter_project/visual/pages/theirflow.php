@@ -63,4 +63,3 @@ if (isset($_SESSION["isLoggedIn"])): ?>
     <?php include "visual/partials/rightpanel.php"; ?>
   </div>
 </div>
-<?php endif ?>

@@ -18,7 +18,7 @@
 
 	<!-- Utskrift av meddelande -->
 	<div style="word-wrap: break-word;">
-		<?=htmlentities($message["message"]);?>
+		<?=htmlentities($message["message"]);?> <!-- if "&quot;" is found print a " instead -->
 		<?php if ($message['image'] !== ""): ?>
 			<br>
 			<a href="<?=htmlentities($message["image"])?>"><img src='<?=htmlentities($message['image'])?>' style="max-width: 300px; max-height: 300px;"></a>
