@@ -10,7 +10,7 @@
 		<?php endif ?>
 		<a class="badge badge-info" href="?page=theirflow&theirflow=<?=$reply["user_id"]?>"><?=$reply["username"]?> | <?=$reply["usertype"]?></a>
 		<?php if ($_SESSION["user_id"] == $reply["user_id"] || $_SESSION["usertype"] == "admin"): ?>
-			<a class="text-align-right" href="?deletereply=<?=$reply["r_id"]?>&reply=<?=$_GET["reply"]?>">🗑️</a>
+			<a class="text-align-right" href="?deletereply=<?=$reply["r_id"]?>&reply=<?=$_GET["reply"]?>" onclick="return confirm('Are you sure you want to delete?')">🗑️</a>
 		<?php endif ?>
 	</div>
 

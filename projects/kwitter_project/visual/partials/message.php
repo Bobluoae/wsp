@@ -12,7 +12,7 @@
 
 		<a class="badge badge-info" href="?page=theirflow&theirflow=<?=$message["user_id"]?>"><?=$message["username"]?> | <?=$message["usertype"]?></a>
 			<?php if ($_SESSION["user_id"] == $message["user_id"] || $_SESSION["usertype"] == "admin"): ?>
-				<a class="text-align-right" href="?delete=<?=$message["m_id"]?>">🗑️</a>
+				<a class="text-align-right" href="?delete=<?=$message["m_id"]?>" onclick="return confirm('Are you sure you want to delete?')">🗑️</a>
 			<?php endif ?>
 	</div>
 

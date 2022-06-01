@@ -35,7 +35,7 @@
 				<br>
 
 				<!-- ta bort användare -->
-				<form method="POST" onsubmit="submit.disabled = true; return true;">
+				<form method="POST" onsubmit="submit.disabled = true; return true;" onclick="return confirm('Are you sure you want to delete?')">
 					<input type="hidden" name="delete_user_skickat">
 					<input type="submit" name="delete_user" value="Delete your account" class="btn btn-danger btn-lg m-3" style="width: 80%;">
 				</form>
