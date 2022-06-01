@@ -19,7 +19,10 @@
 	<!-- Utskrift av meddelande -->
 	<div style="word-wrap: break-word;">
 		<?=htmlentities($message["message"]);?> <!-- if "&quot;" is found print a " instead -->
-		<?php if ($message['image'] !== ""): ?>
+		<?php if (strpos($message['image'], ".svg")): ?>
+			<br>
+			<img src='<?=htmlentities($message['image'])?>' style="max-width: 300px; max-height: 300px;">
+		<?php else: ($message['image'] !== "") ?>
 			<br>
 			<a href="<?=htmlentities($message["image"])?>"><img src='<?=htmlentities($message['image'])?>' style="max-width: 300px; max-height: 300px;"></a>
 		<?php endif ?>
