@@ -5,7 +5,7 @@
 			<div class="mb-3" style="border-bottom: 4px solid navy; height: 200px; overflow: hidden;">
 				<img src='<?=htmlentities($user_info['banner'])?>'>
 			</div>
-		<?php else: ($user_info['banner'] !== "") ?>
+		<?php elseif ($user_info['banner'] !== ""): ?>
 			<div class="mb-3" style="border-bottom: 4px solid navy; height: 200px; overflow: hidden;">
 				<a href="<?=htmlentities($user_info["banner"])?>"><img src='<?=htmlentities($user_info['banner'])?>'></a>
 			</div>

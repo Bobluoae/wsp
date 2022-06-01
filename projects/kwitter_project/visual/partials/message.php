@@ -22,14 +22,15 @@
 		<?php if (strpos($message['image'], ".svg")): ?>
 			<br>
 			<img src='<?=htmlentities($message['image'])?>' style="max-width: 300px; max-height: 300px;">
-		<?php else: ($message['image'] !== "") ?>
+		
+		<?php elseif ($message['image'] !== ""): ?>
 			<br>
 			<a href="<?=htmlentities($message["image"])?>"><img src='<?=htmlentities($message['image'])?>' style="max-width: 300px; max-height: 300px;"></a>
 		<?php endif ?>
 		
 
 	</div>
-	<span class="" style="font-size: 10px;">Created at: <?=$message["m_created_at"]?></span>
+	<span class=" " style="font-size: 10px;">Created at: <?=$message["m_created_at"]?></span>
 
 	<!-- Ruta för like, dislike och like-dislike ratio och replies -->
 	<div class="border-information m-1">

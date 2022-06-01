@@ -20,7 +20,7 @@
 		<?php if (strpos($reply['image'], ".svg")): ?>
 			<br>
 			<img src='<?=htmlentities($reply['image'])?>' style="max-width: 300px; max-height: 300px;">
-		<?php else: ($reply['image'] !== "") ?>
+		<?php elseif ($reply['image'] !== ""): ?>
 			<br>
 			<a href="<?=htmlentities($reply["image"])?>"><img src='<?=htmlentities($reply['image'])?>' style="max-width: 300px; max-height: 300px;"></a>
 		<?php endif ?>
