@@ -6,6 +6,9 @@ if (!isset($_SESSION["time"])) {
 if (!isset($_SESSION["timem"])) {
 	$_SESSION["timem"] = time();
 }
+if (!isset($_SESSION["timereg"])) {
+	$_SESSION["timereg"] = time();
+}
 if (!isset($_GET["reply"])) {
 	$_GET["reply"] = false;
 }

@@ -42,6 +42,13 @@ if(isset($_POST["reg_skickat"])){
 		$message = "The confirmation password does not match";
 	}
 
+	$timereg = time() - $_SESSION["timereg"];
+
+	if ($timereg > 60) {
+		$error = true;
+		$message = "You have to wait 1 minute between creating accounts!";
+	}
+
 	if ($error == false) { 
 
 		//Om det inte fanns något fel i registreringen, registrera användaren från informationen angivits i formuläret
