@@ -42,13 +42,20 @@ if(isset($_POST["reg_skickat"])){
 		$message = "The confirmation password does not match";
 	}
 
+	if (!isset($_SESSION["timereg"])) {
+		$_SESSION["timereg"] = time();
+	}
+
 	$timereg = time() - $_SESSION["timereg"];
 
-	if ($timereg > 60) {
+	if ($timereg <= 60) {
+		echo $timereg;
 		$error = true;
 		$message = "You have to wait 1 minute between creating accounts!";
 	}
 
+	
+	
 	if ($error == false) { 
 
 		//Om det inte fanns något fel i registreringen, registrera användaren från informationen angivits i formuläret
@@ -62,6 +69,8 @@ if(isset($_POST["reg_skickat"])){
 		$query->bindParam('3', $usertype, PDO::PARAM_STR);
 		$query->execute();
 
+		$timereg = 0;
+		unset($_SESSION["timereg"]);
 		//Sedan gå till Flow
 		$_GET["page"] = "flow";
 		
