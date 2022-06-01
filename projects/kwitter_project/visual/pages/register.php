@@ -11,7 +11,10 @@
 				</h1>
 				<?php if (!isset($_SESSION["isLoggedIn"])) {  
 					if ($error == true) {
-						echo "<strong style = 'color: firebrick; -webkit-text-stroke:0.5px black;'>{$message}!</strong>";
+						echo "<strong style = 'color: firebrick; -webkit-text-stroke:0.5px black;'>{$message}</strong>";
+						if(isset($timereg)){
+							echo "<strong style = 'color: orange; -webkit-text-stroke:0.5px black;'><br>{$timereg} seconds waited. <br>This is to deter botspam, please wait.</strong>";
+						}
 					} ?>
 					<form method="POST" onsubmit="submit.disabled = true; return true;">
 						<input type="hidden" name="reg_skickat">

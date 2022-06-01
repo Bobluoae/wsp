@@ -1,11 +1,17 @@
 <?php 
+if (!isset($_SESSION["timereg"])) {
+	$_SESSION["timereg"] = time();
+}
+
+$timereg = time() - $_SESSION["timereg"];
+
 if(isset($_POST["reg_skickat"])){
 	//Registrering
 	//Error hanterare, om en av dom här stämmer blir error true och message blir felmeddelandet
 
 	if ($_POST["username"] == "" || $_POST["password"] == "" || $_POST['confirm_password'] == "") {
 		$error = true;
-		$message = "You need to write in all forms";
+		$message = "You need to write in all forms!";
 	}
 
 	$nam = $_POST["username"];
@@ -24,32 +30,25 @@ if(isset($_POST["reg_skickat"])){
 	//hittade en rad i db med användarnamnet
 	if ($query->rowCount() == 1) {
 		$error = true;
-		$message = "This username is already taken";
+		$message = "This username is already taken!";
 	}
 
 	if (strlen($_POST['password']) <= 4) {
 		$error = true;
-		$message = "You need at least 5 characters in your password";
+		$message = "You need at least 5 characters in your password!";
 	}
 
 	if (strlen($_POST['username']) <= 2) {
 		$error = true;
-		$message = "You need at least 3 characters in your username";
+		$message = "You need at least 3 characters in your username!";
 	}
 
 	if ($_POST['password'] !== $_POST['confirm_password']) {
 		$error = true;
-		$message = "The confirmation password does not match";
+		$message = "The confirmation password does not match!";
 	}
-
-	if (!isset($_SESSION["timereg"])) {
-		$_SESSION["timereg"] = time();
-	}
-
-	$timereg = time() - $_SESSION["timereg"];
 
 	if ($timereg <= 60) {
-		echo $timereg;
 		$error = true;
 		$message = "You have to wait 1 minute between creating accounts!";
 	}
